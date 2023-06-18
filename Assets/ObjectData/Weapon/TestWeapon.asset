@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15594051b373864aa848b376a8279f9, type: 3}
+  m_Name: TestWeapon
+  m_EditorClassIdentifier: 
+  BulletType: {fileID: 11400000, guid: 3c12c696903918c4097d8367493f3e1f, type: 2}
+  OneShootBulletNum: 1
+  OneShootBulletCoolDown: 0
+  OneShootBulletRange: 0
+  CoolDown: 2
+  CritRate: 25
