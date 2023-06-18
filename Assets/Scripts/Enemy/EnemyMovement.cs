@@ -16,7 +16,7 @@ public class EnemyMovement : EnemyStats
     // Update is called once per frame
     void Update()
     {
-        
+        transform.LookAt(player.position);
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemyData._MoveSpeed * Time.deltaTime);
     }
 }

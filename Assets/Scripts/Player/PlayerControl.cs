@@ -36,7 +36,7 @@ public class PlayerControl : AttributeBase
         float horizontal = Input.GetAxisRaw("Horizontal"); // 获取水平轴输入
         float vertical = Input.GetAxisRaw("Vertical"); // 获取垂直轴输入
 
-        moveDir=new Vector3(horizontal, 0, vertical).normalized;
+        moveDir = new Vector3(horizontal, 0, vertical).normalized;
     }
 
     void Move()

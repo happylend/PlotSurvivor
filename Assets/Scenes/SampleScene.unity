@@ -546,6 +546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649785390}
   - component: {fileID: 1649785391}
+  - component: {fileID: 1649785392}
   m_Layer: 0
   m_Name: EnemyPool
   m_TagString: Untagged
@@ -575,7 +576,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649785388}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9853a81be933b3240ae111a52dfe2572, type: 3}
   m_Name: 
@@ -587,6 +588,33 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6713669394295833101, guid: bf27efadc8f02a843b0b77e06c840f1c, type: 3}
   enemyPool: []
+--- !u!114 &1649785392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649785388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b719c4bd06f22b348b974a3a952e9d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - waveName: 
+    enemygroup:
+    - enemyName: TestEnemy1
+      enemyCount: 3
+      spawnCount: 0
+      enemyPrefab: {fileID: 460711611222930413, guid: bf27efadc8f02a843b0b77e06c840f1c, type: 3}
+    - enemyName: TestEnemy2
+      enemyCount: 5
+      spawnCount: 0
+      enemyPrefab: {fileID: 460711611222930413, guid: 66e36440a2ec1a44cab1fdf583af42ce, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  currentWaveCount: 0
 --- !u!1001 &5098625201294892410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -595,6 +623,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5098625201701010195, guid: 9ee9ef6a3b120174c8ed4d9b48d1d52a, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 5098625201701010204, guid: 9ee9ef6a3b120174c8ed4d9b48d1d52a, type: 3}
       propertyPath: m_Name
       value: Player

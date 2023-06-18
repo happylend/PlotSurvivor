@@ -20,6 +20,7 @@ public class SurvivorEnemy : BasePool<EnemyStats>
         if (Player == null)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
+            
         }
     }
 
