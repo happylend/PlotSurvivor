@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         CalculateWaveQuota();
         SpawnEnemies();
     }
-*
+
     // Update is called once per frame
     void Update()
     {
