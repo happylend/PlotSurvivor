@@ -16,5 +16,5 @@ MonoBehaviour:
   OneShootBulletNum: 1
   OneShootBulletCoolDown: 0
   OneShootBulletRange: 0
-  CoolDown: 2
+  CoolDown: 0.01
   CritRate: 25

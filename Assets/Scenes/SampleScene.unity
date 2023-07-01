@@ -449,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1453612961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -545,8 +545,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1649785390}
-  - component: {fileID: 1649785391}
   - component: {fileID: 1649785392}
+  - component: {fileID: 1649785393}
   m_Layer: 0
   m_Name: EnemyPool
   m_TagString: Untagged
@@ -569,7 +569,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1649785391
+--- !u!114 &1649785392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649785388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b719c4bd06f22b348b974a3a952e9d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - waveName: 
+    enemygroup:
+    - enemyName: TestEnemy1
+      enemyCount: 5
+      spawnCount: 0
+      enemyPrefab: {fileID: 460711611222930413, guid: bf27efadc8f02a843b0b77e06c840f1c, type: 3}
+    - enemyName: TestEnemy2
+      enemyCount: 8
+      spawnCount: 0
+      enemyPrefab: {fileID: 460711611222930413, guid: 66e36440a2ec1a44cab1fdf583af42ce, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  currentWaveCount: 0
+--- !u!114 &1649785393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -587,34 +614,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   enemyPrefabs:
   - {fileID: 6713669394295833101, guid: bf27efadc8f02a843b0b77e06c840f1c, type: 3}
+  - {fileID: 6713669394295833101, guid: 66e36440a2ec1a44cab1fdf583af42ce, type: 3}
   enemyPool: []
---- !u!114 &1649785392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649785388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b719c4bd06f22b348b974a3a952e9d2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waves:
-  - waveName: 
-    enemygroup:
-    - enemyName: TestEnemy1
-      enemyCount: 3
-      spawnCount: 0
-      enemyPrefab: {fileID: 460711611222930413, guid: bf27efadc8f02a843b0b77e06c840f1c, type: 3}
-    - enemyName: TestEnemy2
-      enemyCount: 5
-      spawnCount: 0
-      enemyPrefab: {fileID: 460711611222930413, guid: 66e36440a2ec1a44cab1fdf583af42ce, type: 3}
-    waveQuota: 0
-    spawnInterval: 1
-    spawnCount: 0
-  currentWaveCount: 0
 --- !u!1001 &5098625201294892410
 PrefabInstance:
   m_ObjectHideFlags: 0

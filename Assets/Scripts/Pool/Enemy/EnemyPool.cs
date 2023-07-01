@@ -47,11 +47,11 @@ public class EnemyPool : MonoBehaviour
     void Update()
     {
         reflashTime += Time.deltaTime;
-        if(reflashTime > enemyTime )
+        if (reflashTime > enemyTime)
         {
             reflashTime = 0f;
             Spawn();
-            
+
         }
 
     }
@@ -59,7 +59,7 @@ public class EnemyPool : MonoBehaviour
     void Spawn()
     {
         for (int i = 0; i < enemyNum; i++)
-        { 
+        {
             var pool = enemyPool[0];
             pool.Get();
         }

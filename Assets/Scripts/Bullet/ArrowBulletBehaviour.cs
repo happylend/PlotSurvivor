@@ -9,7 +9,7 @@ public class ArrowBulletBehaviour : BulletBehaviour
     protected virtual void Start()
     {
         base.Start();
-        AC=FindObjectOfType<ArrowController>();
+        AC = FindObjectOfType<ArrowController>();
     }
 
     // Update is called once per frame

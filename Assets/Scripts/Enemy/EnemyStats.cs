@@ -50,6 +50,7 @@ public class EnemyStats : MonoBehaviour
     public void Kill()
     {
         //´¥·¢Ïú»Ù
+        //Destroy(gameObject);
         deactivateAction.Invoke(this);
     }
 

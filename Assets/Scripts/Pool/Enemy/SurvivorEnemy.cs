@@ -47,6 +47,7 @@ public class SurvivorEnemy : BasePool<EnemyStats>
     //¥¥Ω®µ–»À
     void CreateEnemy(EnemyStats enemy)
     {
-        enemy.transform.position = Player.transform.position + Random.insideUnitSphere * 20f;
+        enemy.transform.position = Player.transform.position + Random.insideUnitSphere * 200f;
+        enemy.transform.position = new Vector3(enemy.transform.position.x, Player.transform.position.y, enemy.transform.position.z);
     }
 }

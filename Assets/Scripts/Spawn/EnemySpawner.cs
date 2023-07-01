@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Wave> waves;    //当前游戏中的所有波次
     public int currentWaveCount;    //当前波数
 
+    [Header("创建敌人间隔")]
     float spawnTimer = 0;
 
     Transform player;

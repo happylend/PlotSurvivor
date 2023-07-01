@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestBullet
   m_EditorClassIdentifier: 
   Bullet: {fileID: 1323025203843467368, guid: b3087b73e7eced849ac29f7da8fff4ba, type: 3}
-  HitDamage: 10
+  HitDamage: 20
   NumberOfHits: 1
   CritDamage: 2
   BulletSize: 1

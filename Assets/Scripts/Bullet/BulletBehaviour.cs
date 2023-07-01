@@ -49,8 +49,10 @@ public class BulletBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hit something?");
         if (other.CompareTag("Enemy"))
         {
+            Debug.Log("Hit!");
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage);
             ReducePierce();
