@@ -27,8 +27,14 @@ public class EnemySpawner : MonoBehaviour
     public List<Wave> waves;    //当前游戏中的所有波次
     public int currentWaveCount;    //当前波数
 
-    [Header("创建敌人间隔")]
     float spawnTimer = 0;
+
+    public int enemiesAlive;
+    public int maxEnemiesAllowed;
+    public bool maxEnemiesReached = false;
+    public float waveInterval;
+
+    public List<Transform> relativesSpawnPoints;
 
     Transform player;
 
@@ -39,15 +45,32 @@ public class EnemySpawner : MonoBehaviour
         CalculateWaveQuota();
         SpawnEnemies();
     }
-
+*
     // Update is called once per frame
     void Update()
     {
+        if (currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0)
+        {
+            StartCoroutine(BeginNextWave());
+        }
+
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= waves[currentWaveCount].spawnInterval)
         {
             spawnTimer = 0f;
             SpawnEnemies();
+        }
+    }
+
+    IEnumerator BeginNextWave()
+    {
+        yield return new WaitForSeconds(waveInterval);
+
+        //如果有更多的波数在此次之后，开始下一个波数
+        if (currentWaveCount < waves.Count - 1)
+        {
+            currentWaveCount++;
+            CalculateWaveQuota();
         }
     }
 
@@ -65,19 +88,39 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        if (waves[currentWaveCount].spawnCount < waves[currentWaveCount].waveQuota)
+        if (waves[currentWaveCount].spawnCount < waves[currentWaveCount].waveQuota && !maxEnemiesReached)
         {
             foreach(var enemyGroup in waves[currentWaveCount].enemygroup)
             {
                 if (enemyGroup.spawnCount < enemyGroup.enemyCount)
                 {
-                    Vector3 spawnPosition = new Vector3(player.transform.position.x + Random.Range(-10f, 10f), 0, player.transform.position.z + Random.Range(-10f, 10f));
-                    Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
+                    if (enemiesAlive >= maxEnemiesAllowed)
+                    {
+                        maxEnemiesReached = true;
+                        return;
+                    }
+
+                    //创建敌人
+                    Instantiate(enemyGroup.enemyPrefab, player.position + relativesSpawnPoints[Random.Range(0, relativesSpawnPoints.Count)].position, Quaternion.identity);
+
+                    //Vector3 spawnPosition = new Vector3(player.transform.position.x + Random.Range(-10f, 10f), 0, player.transform.position.z + Random.Range(-10f, 10f));
+                    //Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
 
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;
+                    enemiesAlive++;
                 }
             }
         }
+
+        if (enemiesAlive < maxEnemiesAllowed)
+        {
+            maxEnemiesReached = false;
+        }
+    }
+
+    public void OnEnemyKill()
+    {
+        enemiesAlive--;
     }
 }
