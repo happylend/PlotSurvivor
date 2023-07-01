@@ -57,8 +57,8 @@ public class EnemyStats : MonoBehaviour
     public void Kill()
     {
         //触发销毁
-        Destroy(gameObject);
-        //deactivateAction.Invoke(this);
+        //Destroy(gameObject);
+        deactivateAction.Invoke(this);
     }
 
     //设置停用状态

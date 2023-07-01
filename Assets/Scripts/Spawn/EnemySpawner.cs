@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+
+    //波次参数
     [System.Serializable]
     public class Wave
     {
@@ -14,13 +16,14 @@ public class EnemySpawner : MonoBehaviour
         public int spawnCount;      //当前波次中场景中已有的敌人数量
     }
 
+    //每波中敌人参数
     [System.Serializable]
     public class EnemyGroup
     {
         public string enemyName;
         public int enemyCount;
         public int spawnCount;
-        public GameObject enemyPrefab;
+        public int enemyPrefabElementNum;
 
     }
 
@@ -36,14 +39,18 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Transform> relativesSpawnPoints;
 
-    Transform player;
+    private Transform Player;
+
+    private EnemyPool enemyPool;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerControl>().transform;
+        Player = FindObjectOfType<PlayerControl>().transform;
+        enemyPool = this.GetComponent<EnemyPool>();
+
         CalculateWaveQuota();
-        SpawnEnemies();
+        //SpawnEnemies();
     }
 
     // Update is called once per frame
@@ -101,10 +108,7 @@ public class EnemySpawner : MonoBehaviour
                     }
 
                     //创建敌人
-                    Instantiate(enemyGroup.enemyPrefab, player.position + relativesSpawnPoints[Random.Range(0, relativesSpawnPoints.Count)].position, Quaternion.identity);
-
-                    //Vector3 spawnPosition = new Vector3(player.transform.position.x + Random.Range(-10f, 10f), 0, player.transform.position.z + Random.Range(-10f, 10f));
-                    //Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
+                    enemyPool.Spawn(enemyGroup.enemyPrefabElementNum);
 
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;
@@ -123,4 +127,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemiesAlive--;
     }
+
+
+
 }

@@ -10,6 +10,9 @@ public class SurvivorEnemy : BasePool<EnemyStats>
     [SerializeField]
     private GameObject Player;
 
+    [SerializeField]
+    private List<Transform> SpawnPoints = new List<Transform>();
+
     private void Awake()
     {
         Initialize();
@@ -21,6 +24,11 @@ public class SurvivorEnemy : BasePool<EnemyStats>
         {
             Player = GameObject.FindGameObjectWithTag("Player");
             
+        }
+
+        foreach(Transform child in GameObject.FindGameObjectWithTag("SpawnPoints").transform)
+        {
+            SpawnPoints.Add(child);
         }
     }
 
@@ -46,8 +54,7 @@ public class SurvivorEnemy : BasePool<EnemyStats>
 
     //¥¥Ω®µ–»À
     void CreateEnemy(EnemyStats enemy)
-    {
-        enemy.transform.position = Player.transform.position + Random.insideUnitSphere * 200f;
-        enemy.transform.position = new Vector3(enemy.transform.position.x, Player.transform.position.y, enemy.transform.position.z);
+    {  
+        enemy.transform.position = Player.transform.position + SpawnPoints[Random.Range(0, SpawnPoints.Count)].position; 
     }
 }

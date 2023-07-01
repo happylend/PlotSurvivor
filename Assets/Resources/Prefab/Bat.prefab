@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
+  despawnDistance: 40
 --- !u!114 &-6765684671787781487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
+  despawnDistance: 20
 --- !u!1001 &3919979052400959193
 PrefabInstance:
   m_ObjectHideFlags: 0

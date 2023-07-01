@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
-    //单次刷怪数量
-    [SerializeField] int enemyNum = 10;
-    //刷怪间隔
-    [SerializeField] float enemyTime = 1;
-    [SerializeField]
-    float reflashTime = 0f;
-
     [SerializeField]
     private GameObject Player;
 
@@ -46,22 +39,13 @@ public class EnemyPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        reflashTime += Time.deltaTime;
-        if (reflashTime > enemyTime)
-        {
-            reflashTime = 0f;
-            Spawn();
-
-        }
 
     }
 
-    void Spawn()
+    public void Spawn(int num)
     {
-        for (int i = 0; i < enemyNum; i++)
-        {
-            var pool = enemyPool[0];
-            pool.Get();
-        }
+        var pool = enemyPool[num];
+        pool.Get();
+
     }
 }
