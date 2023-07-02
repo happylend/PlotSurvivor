@@ -66,6 +66,12 @@ public class EnemyStats : MonoBehaviour
     {
         //触发销毁
         //Destroy(gameObject);
+        EnemySpawner es = FindObjectOfType<EnemySpawner>();
+        if (es != null)
+        {
+            es.OnEnemyKill();
+        }
+
         animator.SetBool("Die", true);
         deactivateAction.Invoke(this);
     }
@@ -74,16 +80,6 @@ public class EnemyStats : MonoBehaviour
     public void SetDeactivateAction(System.Action<EnemyStats> deactivateAction)
     {
         this.deactivateAction = deactivateAction;
-    }
-
-    private void OnDisable()
-    {
-        EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        if (es != null)
-        {
-            es.OnEnemyKill();
-        }    
-
     }
 
     //刷新敌人位置

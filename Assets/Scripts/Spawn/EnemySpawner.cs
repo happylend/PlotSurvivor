@@ -9,10 +9,15 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public class Wave
     {
+        [Header("波次名")]
         public string waveName;
+        [Header("该波次的敌人种类")]
         public List<EnemyGroup> enemygroup;
+        [Header("当前波次的敌人的总数")]
         public int waveQuota;    //每波创建敌人的总数
+        [Header("创建敌人间隔")]
         public float spawnInterval; //创建敌人的间隔
+        [Header("已创建敌人数量")]
         public int spawnCount;      //当前波次中场景中已有的敌人数量
     }
 
@@ -20,9 +25,13 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public class EnemyGroup
     {
+        [Header("敌人名")]
         public string enemyName;
+        [Header("敌人数量")]
         public int enemyCount;
+        [Header("已创建的敌人数量")]
         public int spawnCount;
+        [Header("敌人类型（根据EnemyPool调用）")]
         public int enemyPrefabElementNum;
 
     }
@@ -36,6 +45,8 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemiesAllowed;
     public bool maxEnemiesReached = false;
     public float waveInterval;
+
+    public int enemiesKill;
 
     public List<Transform> relativesSpawnPoints;
 
@@ -126,6 +137,7 @@ public class EnemySpawner : MonoBehaviour
     public void OnEnemyKill()
     {
         enemiesAlive--;
+        enemiesKill++;
     }
 
 

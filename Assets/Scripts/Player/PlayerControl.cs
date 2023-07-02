@@ -8,9 +8,13 @@ public class PlayerControl : AttributeBase
     public Animator animator; // 动画控制器
     private bool isBlocked; // 是否被阻挡
 
+    public float detectionRadius = 20f;
+
     Rigidbody rb;
     public Vector3 moveDir;
     public Vector3 PlayerDir;
+
+    bool NoEnemy = true;
 
     void Start()
     {
@@ -22,12 +26,16 @@ public class PlayerControl : AttributeBase
     {
         PlayerDir = transform.forward;
         InputManagement();
+
+        if (NoEnemy == false)
+        {
+            LookEnemy();
+        }
     }
 
     void FixedUpdate()
     {
         Move();
-
 
     }
 
@@ -47,8 +55,12 @@ public class PlayerControl : AttributeBase
             Vector3 movement = new Vector3(moveDir.x, 0f, moveDir.z);
 
             // 根据移动方向旋转角色
-            Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.15f);
+            if (NoEnemy)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.15f);
+            }
+
 
             // 检测是否会碰到障碍物
             RaycastHit hit;
@@ -75,6 +87,37 @@ public class PlayerControl : AttributeBase
             animator.SetBool("run", false);
         }
 
+    }
+
+    void LookEnemy()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
+        float minDistance = Mathf.Infinity;
+        GameObject closestUnit = null;
+
+        if (colliders.Length == 0)
+        {
+            NoEnemy = false;
+        }
+        else
+        {
+            NoEnemy = true;
+        }
+
+        foreach (Collider collider in colliders)
+        {
+            float distance = Vector3.Distance(transform.position, collider.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestUnit = collider.gameObject;
+            }
+        }
+
+        if (closestUnit != null)
+        {
+            transform.LookAt(closestUnit.transform);
+        }
     }
 
 }

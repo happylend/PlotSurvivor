@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Player;
-
+    //敌人类型
     [SerializeField]
     EnemyStats[] enemyPrefabs;
 
-    [SerializeField]
+    //根据敌人类型创建对象池列表
     List<SurvivorEnemy> enemyPool = new List<SurvivorEnemy>();
 
     private void Start()
     {
-        if (Player == null)
-        {
-            Player = GameObject.FindGameObjectWithTag("Player");
-        }
 
         foreach (var prefab in enemyPrefabs)
         {
@@ -36,12 +30,7 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    //获取对象池中的单位
     public void Spawn(int num)
     {
         var pool = enemyPool[num];
