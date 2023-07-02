@@ -1005,11 +1005,11 @@ MonoBehaviour:
     enemygroup:
     - enemyName: TestEnemy1
       enemyCount: 20
-      spawnCount: 20
+      spawnCount: 0
       enemyPrefabElementNum: 0
     - enemyName: TestEnemy2
       enemyCount: 20
-      spawnCount: 20
+      spawnCount: 0
       enemyPrefabElementNum: 1
     waveQuota: 0
     spawnInterval: 1

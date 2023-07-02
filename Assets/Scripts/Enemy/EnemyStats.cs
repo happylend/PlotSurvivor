@@ -7,12 +7,18 @@ public class EnemyStats : MonoBehaviour
     public EnemyAttributeData enemyData;
 
     //当前状态
-    private float currentMoveSpeed;
-    private float currentHealth;
-    private float currentDamage;
+    protected float currentMoveSpeed;
+    protected float currentHealth;
+    protected float currentDamage;
 
-    public float despawnDistance = 20f;
+    [SerializeField]
     Transform player;
+
+    [SerializeField]
+    private float despawnDistance = 40f;
+
+
+    Animator animator;
 
 
     System.Action<EnemyStats> deactivateAction;
@@ -24,9 +30,11 @@ public class EnemyStats : MonoBehaviour
         currentMoveSpeed = enemyData._MoveSpeed;
     }
     // Start is called before the first frame update
+
     void Start()
     {
         player = FindObjectOfType<PlayerControl>().transform;
+        if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
     }
 
     //每次激活时刷新属性
@@ -58,6 +66,7 @@ public class EnemyStats : MonoBehaviour
     {
         //触发销毁
         //Destroy(gameObject);
+        animator.SetBool("Die", true);
         deactivateAction.Invoke(this);
     }
 
@@ -70,7 +79,11 @@ public class EnemyStats : MonoBehaviour
     private void OnDisable()
     {
         EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        es.OnEnemyKill();
+        if (es != null)
+        {
+            es.OnEnemyKill();
+        }    
+
     }
 
     //刷新敌人位置

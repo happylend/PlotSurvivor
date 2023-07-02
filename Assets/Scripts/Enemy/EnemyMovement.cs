@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class EnemyMovement : EnemyStats
 {
-    //public EnemyAttributeData enemyData;
-    Transform player;
-
+    Transform Player;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player = FindObjectOfType<PlayerControl>().transform;
     }
+
+    void OnEnable()
+    {
+
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.position);
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemyData._MoveSpeed * Time.deltaTime);
+        transform.LookAt(Player);
+        transform.position = Vector3.MoveTowards(transform.position, Player.position, currentMoveSpeed * Time.deltaTime);
     }
 }
