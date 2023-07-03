@@ -33,7 +33,7 @@ public class EnemyStats : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PlayerControl>().transform;
+        player = FindObjectOfType<PlayerState>().transform;
         if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
     }
 

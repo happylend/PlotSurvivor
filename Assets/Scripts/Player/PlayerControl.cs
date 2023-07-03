@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerControl : AttributeBase
+public class PlayerControl : MonoBehaviour
 {
     public Animator animator; // 动画控制器
     private bool isBlocked; // 是否被阻挡
@@ -78,7 +78,7 @@ public class PlayerControl : AttributeBase
             }
 
             //调用移动
-            Move(movement);
+            //Move(movement);
             animator.SetBool("run", true);
         }
 
