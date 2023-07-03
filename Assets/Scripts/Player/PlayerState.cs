@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public AttributeBase playerAttribute;
+    public AttributeBase playerData;
 
-    float currentHealth;
-    float currentRecovery;
-    float currentMoveSpeed;
-    float currentMight;
-    float currentProjectileSpeed;
+    protected float currentHealth;
+    protected float currentRecovery;
+    protected float currentMoveSpeed;
+
+
+    void Awake()
+    {
+        currentHealth = playerData._MaxHealth;
+        currentRecovery = playerData._HealthRecovery;
+        currentMoveSpeed = playerData._MoveSpeed;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,4 +29,46 @@ public class PlayerState : MonoBehaviour
     {
         
     }
+
+    // 移动行为
+    public void Move(Vector3 direction)
+    {
+        transform.position += direction.normalized * currentMoveSpeed * Time.deltaTime;
+    }
+
+    // 攻击行为
+    public void Attack(PlayerState target)
+    {
+        int damage = 0;
+        target.TakeDamage(damage);
+    }
+
+    // 受伤行为
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    // 死亡行为
+    public void Die()
+    {
+        // TODO: 角色死亡后的处理
+        gameObject.SetActive(false);
+    }
+
+    /*
+    // 升级行为
+    public void LevelUp()
+    {
+        Level++;
+        MaxHealth += 10;
+        CurrentHealth = MaxHealth;
+        //attackPower += 5;
+        // TODO: 其他属性的升级
+    }
+    */
 }

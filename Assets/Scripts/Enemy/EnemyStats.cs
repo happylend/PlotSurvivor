@@ -25,7 +25,7 @@ public class EnemyStats : MonoBehaviour
 
     private void Awake()
     {
-        currentDamage = enemyData._Damage;
+        currentDamage = enemyData._HitDamage;
         currentHealth = enemyData._MaxHealth;
         currentMoveSpeed = enemyData._MoveSpeed;
     }

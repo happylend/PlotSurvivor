@@ -1784,6 +1784,8 @@ GameObject:
   - component: {fileID: 5098625201701010195}
   - component: {fileID: 5098625201701010194}
   - component: {fileID: 5098625201701010192}
+  - component: {fileID: 6690712205196509265}
+  - component: {fileID: 3292008668951973712}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1807,7 +1809,7 @@ Transform:
   - {fileID: 4226493658697732820}
   - {fileID: 4380380837032661078}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5098625201701010195
 Rigidbody:
@@ -1834,7 +1836,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &5098625201701010194
 CapsuleCollider:
@@ -1866,18 +1868,43 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5098625201701010204}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be8097f11fc9e340b6731df9086e4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterName: 
-  MaxHealth: 5
-  CurrentHealth: 0
-  Level: 0
-  Experience: 0
-  MoveSpeed: 10
+  playerAttribute: {fileID: 0}
   animator: {fileID: 0}
+  detectionRadius: 20
+  moveDir: {x: 0, y: 0, z: 0}
+  PlayerDir: {x: 0, y: 0, z: 0}
+--- !u!114 &6690712205196509265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098625201701010204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a949d808d5e434287bbff533652db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttribute: {fileID: 11400000, guid: 53a67c7e2aeb1d14cae5e7bc81d7f4c1, type: 2}
+--- !u!114 &3292008668951973712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098625201701010204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6824e4e74755b479ef3d0b3c8bc27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttribute: {fileID: 11400000, guid: 53a67c7e2aeb1d14cae5e7bc81d7f4c1, type: 2}
+  animator: {fileID: 9064905568847935626}
   moveDir: {x: 0, y: 0, z: 0}
   PlayerDir: {x: 0, y: 0, z: 0}
 --- !u!1 &5172283243041637868

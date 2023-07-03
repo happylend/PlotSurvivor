@@ -17,6 +17,11 @@ public class EnemyAttributeData : ScriptableObject
 
     [Header("Åö×²ÉËº¦")]
     [SerializeField]
-    int Damage;
-    public int _Damage { get => Damage; private set => Damage = value; }
+    int HitDamage;
+    public int _HitDamage { get => HitDamage; private set => HitDamage = value; }
+
+    [Header("Ô¶³ÌÉËº¦")]
+    [SerializeField]
+    int ShootDamage;
+    public int _ShootDamage { get => ShootDamage; private set => ShootDamage = value; }
 }
