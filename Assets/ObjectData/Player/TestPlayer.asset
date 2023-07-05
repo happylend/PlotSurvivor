@@ -17,4 +17,4 @@ MonoBehaviour:
   HealthRecovery: 0
   Level: 1
   Experience: 0
-  MoveSpeed: 20
+  MoveSpeed: 10

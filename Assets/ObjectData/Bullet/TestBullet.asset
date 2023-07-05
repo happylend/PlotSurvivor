@@ -17,6 +17,6 @@ MonoBehaviour:
   NumberOfHits: 1
   CritDamage: 2
   BulletSize: 1
-  BulletSpeed: 20
+  BulletSpeed: 10
   BulletRange: 2
   BreakArmor: 0

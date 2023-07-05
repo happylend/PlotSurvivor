@@ -7,15 +7,12 @@ public class PlayerMovement : PlayerState
     public Animator animator; // 动画控制器
     private bool isBlocked; // 是否被阻挡
 
-    Rigidbody rb;
-    public Vector3 moveDir;
-    public Vector3 PlayerDir;
 
     // Start is called before the first frame update
     void Start()
     {
         if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
-        rb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame

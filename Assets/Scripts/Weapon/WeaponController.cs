@@ -5,18 +5,19 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public WeaponData weaponData;
+    public GameObject weaponModel;
 
 
     private int currentBulletNum;
     private float currentCoolDown;
     private float currentOneShootBulletCoolDown;
 
-    protected PlayerControl playerControl;
+    protected PlayerState playerState;
 
 
     protected virtual void Awake()
     {
-        playerControl=FindObjectOfType<PlayerControl>();
+        playerState = FindObjectOfType<PlayerState>();
 
         currentBulletNum = weaponData._OneShootBulletNum;
         currentCoolDown = weaponData._CoolDown;
@@ -27,7 +28,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        
+        Instantiate(weaponModel, this.transform);
     }
 
     // Update is called once per frame

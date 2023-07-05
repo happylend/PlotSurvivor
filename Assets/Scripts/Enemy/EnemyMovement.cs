@@ -8,7 +8,7 @@ public class EnemyMovement : EnemyStats
     // Start is called before the first frame update
     void Start()
     {
-        Player = FindObjectOfType<PlayerControl>().transform;
+        Player = FindObjectOfType<PlayerState>().transform;
     }
 
     void OnEnable()

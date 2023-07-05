@@ -10,12 +10,18 @@ public class PlayerState : MonoBehaviour
     protected float currentRecovery;
     protected float currentMoveSpeed;
 
+    Rigidbody rb;
+    public Vector3 moveDir;
+    public Vector3 PlayerDir;
+
 
     void Awake()
     {
         currentHealth = playerData._MaxHealth;
         currentRecovery = playerData._HealthRecovery;
         currentMoveSpeed = playerData._MoveSpeed;
+
+        rb = GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update

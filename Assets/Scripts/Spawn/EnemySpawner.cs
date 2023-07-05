@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = FindObjectOfType<PlayerControl>().transform;
+        Player = FindObjectOfType<PlayerState>().transform;
         enemyPool = this.GetComponent<EnemyPool>();
 
         CalculateWaveQuota();

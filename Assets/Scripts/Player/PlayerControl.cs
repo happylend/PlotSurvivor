@@ -8,13 +8,16 @@ public class PlayerControl : MonoBehaviour
     public Animator animator; // ¶¯»­¿ØÖÆÆ÷
     private bool isBlocked; // ÊÇ·ñ±»×èµ²
 
-    public float detectionRadius = 20f;
+    //×î½ü·¶Î§¼ì²â
+    public float Radius = 20f;
+    public Collider[] colliders;
 
     Rigidbody rb;
     public Vector3 moveDir;
     public Vector3 PlayerDir;
 
     bool NoEnemy = true;
+    GameObject closestUnit = null;
 
     void Start()
     {
@@ -27,10 +30,8 @@ public class PlayerControl : MonoBehaviour
         PlayerDir = transform.forward;
         InputManagement();
 
-        if (NoEnemy == false)
-        {
-            LookEnemy();
-        }
+        LookEnemy();
+
     }
 
     void FixedUpdate()
@@ -91,33 +92,41 @@ public class PlayerControl : MonoBehaviour
 
     void LookEnemy()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
+        colliders = Physics.OverlapSphere(transform.position, Radius);
         float minDistance = Mathf.Infinity;
-        GameObject closestUnit = null;
 
-        if (colliders.Length == 0)
+        if(colliders.Length > 0)
         {
-            NoEnemy = false;
+            foreach (Collider collider in colliders)
+            {
+                if (collider.tag.Equals("Enemy"))
+                {
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        closestUnit = collider.gameObject;
+
+                    }
+                }
+            }
+            if(closestUnit != null)
+            {
+                NoEnemy = false;
+                transform.LookAt(closestUnit.transform);
+
+            }
+            else
+            { 
+                NoEnemy = true;
+            }
+
         }
         else
         {
             NoEnemy = true;
         }
 
-        foreach (Collider collider in colliders)
-        {
-            float distance = Vector3.Distance(transform.position, collider.transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                closestUnit = collider.gameObject;
-            }
-        }
-
-        if (closestUnit != null)
-        {
-            transform.LookAt(closestUnit.transform);
-        }
     }
 
 }
