@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    RaycastHit hit;
+    private Vector3 aimPoint;
+    public float rotSpeed = 0.5f;
+
     public GameObject Bullet;
     public Transform spawnPosition;
     [HideInInspector]
@@ -20,6 +22,19 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if(hit.transform.tag!=("Player"))
+            {
+                aimPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+                float tempAngle = Vector3.Angle(transform.forward, aimPoint - transform.position);//自身和目标的夹角
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(aimPoint - transform.position), rotSpeed);
+            }
+
+
+        }
     }
 }

@@ -54,6 +54,8 @@ public class EnemySpawner : MonoBehaviour
 
     private EnemyPool enemyPool;
 
+    bool firstStart = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,12 +63,23 @@ public class EnemySpawner : MonoBehaviour
         enemyPool = this.GetComponent<EnemyPool>();
 
         CalculateWaveQuota();
-        //SpawnEnemies();
+    }
+
+    void OnEnable()
+    {
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //生成第一波
+        if(firstStart)
+        {
+            SpawnEnemies();
+            firstStart = false;
+        }
+
         if (currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0)
         {
             StartCoroutine(BeginNextWave());

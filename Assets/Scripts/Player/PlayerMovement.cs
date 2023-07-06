@@ -6,12 +6,13 @@ public class PlayerMovement : PlayerState
 {
     public Animator animator; // 动画控制器
     private bool isBlocked; // 是否被阻挡
-
+    GameObject playerModel;
 
     // Start is called before the first frame update
     void Start()
     {
         if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
+        if(playerModel == null) { playerModel=this.GetComponentInChildren<Animator>().gameObject; }
 
     }
 
@@ -46,13 +47,13 @@ public class PlayerMovement : PlayerState
 
             // 根据移动方向旋转角色
             Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.15f);
+            playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, targetRotation, 0.15f);
 
             // 检测是否会碰到障碍物
             RaycastHit hit;
             if (Physics.Raycast(transform.position, movement.normalized, out hit, movement.magnitude))
             {
-                if (!hit.collider.isTrigger) // 如果碰撞体不是触发器，表示被阻挡了
+                if (hit.collider.tag==("staticScene")) // 如果碰撞体不是触发器，表示被阻挡了
                 {
                     isBlocked = true;
                     return; // 不进行移动和旋转
@@ -64,7 +65,7 @@ public class PlayerMovement : PlayerState
             }
 
             //调用移动
-            transform.position += movement.normalized * currentMoveSpeed * Time.deltaTime;
+            Move(movement);
             animator.SetBool("run", true);
         }
 
