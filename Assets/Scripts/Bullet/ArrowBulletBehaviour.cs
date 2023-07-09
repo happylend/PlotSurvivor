@@ -13,9 +13,11 @@ public class ArrowBulletBehaviour : BulletBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += direction * bulletData._BulletSpeed * Time.deltaTime;
+        Debug.LogError("speed: " + currentSpeed);
+        Debug.LogError("dir: " + direction.normalized);
+        transform.position += direction.normalized * currentSpeed * Time.deltaTime;
 
     }
 }

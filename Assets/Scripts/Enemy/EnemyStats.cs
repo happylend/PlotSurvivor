@@ -25,9 +25,13 @@ public class EnemyStats : MonoBehaviour
 
     private void Awake()
     {
-        currentDamage = enemyData._HitDamage;
-        currentHealth = enemyData._MaxHealth;
-        currentMoveSpeed = enemyData._MoveSpeed;
+        if (enemyData != null)
+        {
+            currentDamage = enemyData._HitDamage;
+            currentHealth = enemyData._MaxHealth;
+            currentMoveSpeed = enemyData._MoveSpeed;
+        }
+
     }
     // Start is called before the first frame update
 
@@ -65,12 +69,16 @@ public class EnemyStats : MonoBehaviour
     public void Kill()
     {
         //触发销毁
-        //Destroy(gameObject);
+        //全局击杀计数器调用
         EnemySpawner es = FindObjectOfType<EnemySpawner>();
         if (es != null)
         {
             es.OnEnemyKill();
         }
+
+        //武器击杀调用
+        
+
 
         animator.SetBool("Die", true);
         deactivateAction.Invoke(this);

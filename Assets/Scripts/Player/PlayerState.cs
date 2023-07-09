@@ -17,9 +17,12 @@ public class PlayerState : MonoBehaviour
 
     void Awake()
     {
-        currentHealth = playerData._MaxHealth;
-        currentRecovery = playerData._HealthRecovery;
-        currentMoveSpeed = playerData._MoveSpeed;
+        if (playerData != null)
+        {
+            currentHealth = playerData._MaxHealth;
+            currentRecovery = playerData._HealthRecovery;
+            currentMoveSpeed = playerData._MoveSpeed;
+        }
 
         rb = GetComponent<Rigidbody>();
     }
@@ -33,7 +36,7 @@ public class PlayerState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PlayerDir = transform.forward;
     }
 
     // ÒÆ¶¯ÐÐÎª

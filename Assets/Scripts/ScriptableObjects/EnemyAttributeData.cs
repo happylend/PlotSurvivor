@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newEnemyData", menuName = "Data/Character Data/Basic Enemy Data", order = 0)]
+[System.Serializable]
 public class EnemyAttributeData : ScriptableObject
 {
     [Header("最大生命值")]

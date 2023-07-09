@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/Basic Weapon Data", order = 1)]
+[System.Serializable]
 public class WeaponData : ScriptableObject
 {
     [Header("ÉËº¦Ä£×é")]
@@ -32,4 +33,12 @@ public class WeaponData : ScriptableObject
     [SerializeField]
     int CritRate;
     public int _CritRate { get => CritRate; private set => CritRate = value; }
+
+    [Header("ÎäÆ÷ÊìÁ·¶È")]
+    [SerializeField]
+    public List<int> LevelUpKill;
+
+    [Header("ÎäÆ÷²å²Û")]
+    [SerializeField]
+    public List<GameObject> WeaponEX;
 }

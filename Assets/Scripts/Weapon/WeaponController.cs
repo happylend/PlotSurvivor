@@ -11,17 +11,31 @@ public class WeaponController : MonoBehaviour
     private int currentBulletNum;
     private float currentCoolDown;
     private float currentOneShootBulletCoolDown;
+    private List<int> currentLevelUpKill = new List<int>();
 
     protected PlayerState playerState;
 
+    private int WeaponLevel = 0;
 
     protected virtual void Awake()
     {
         playerState = FindObjectOfType<PlayerState>();
 
-        currentBulletNum = weaponData._OneShootBulletNum;
-        currentCoolDown = weaponData._CoolDown;
-        currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
+        if (weaponData != null)
+        {
+            currentBulletNum = weaponData._OneShootBulletNum;
+            currentCoolDown = weaponData._CoolDown;
+            currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
+
+            if (weaponData.LevelUpKill.Count > 0)
+            {
+                for (int i = 0; i < weaponData.LevelUpKill.Count; i++) 
+                {
+                    currentLevelUpKill.Add(weaponData.LevelUpKill[i]);
+                }
+            }
+        }
+
 
 
     }
@@ -44,5 +58,15 @@ public class WeaponController : MonoBehaviour
     protected virtual void Attack()
     {
         currentCoolDown = weaponData._CoolDown;
+    }
+
+    //ÎäÆ÷Éý¼¶
+    void LevelUp()
+    {
+        currentLevelUpKill[WeaponLevel]--;
+        if (currentLevelUpKill[WeaponLevel] <= 0)
+        {
+            WeaponLevel++;
+        }
     }
 }

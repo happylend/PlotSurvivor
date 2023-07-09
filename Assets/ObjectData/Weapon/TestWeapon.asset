@@ -18,3 +18,7 @@ MonoBehaviour:
   OneShootBulletRange: 0
   CoolDown: 1
   CritRate: 25
+  LevelUpKill: 640000002c010000
+  WeaponEX:
+  - {fileID: 0}
+  - {fileID: 0}

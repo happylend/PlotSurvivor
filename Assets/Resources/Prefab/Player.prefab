@@ -1786,6 +1786,7 @@ GameObject:
   - component: {fileID: 5098625201701010194}
   - component: {fileID: 6690712205196509265}
   - component: {fileID: 3292008668951973712}
+  - component: {fileID: 3141343290991730060}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1873,7 +1874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a949d808d5e434287bbff533652db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 53a67c7e2aeb1d14cae5e7bc81d7f4c1, type: 2}
+  playerData: {fileID: 11400000, guid: 9c5688edb2853ba408938230ca75a4df, type: 2}
   moveDir: {x: 0, y: 0, z: 0}
   PlayerDir: {x: 0, y: 0, z: 0}
 --- !u!114 &3292008668951973712
@@ -1888,12 +1889,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6824e4e74755b479ef3d0b3c8bc27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 53a67c7e2aeb1d14cae5e7bc81d7f4c1, type: 2}
+  playerData: {fileID: 11400000, guid: 9c5688edb2853ba408938230ca75a4df, type: 2}
   moveDir: {x: 0, y: 0, z: 0}
   PlayerDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 9064905568847935626}
-  moveDir: {x: 0, y: 0, z: 0}
-  PlayerDir: {x: 0, y: 0, z: 0}
+--- !u!114 &3141343290991730060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098625201701010204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a50f064520bc64ca4ed3833033530d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 0.5
+  Bullet: {fileID: 0}
+  spawnPosition: {fileID: 0}
+  currentProjectile: 0
+  speed: 1000
 --- !u!1 &5172283243041637868
 GameObject:
   m_ObjectHideFlags: 0

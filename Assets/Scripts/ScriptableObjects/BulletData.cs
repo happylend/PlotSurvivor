@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/Weapon Data/Basic Bullet Data", order = 0)]
+[System.Serializable]
 public class BulletData : ScriptableObject
 {
     [Header("×Óµ¯Ä£×é")]

@@ -17,10 +17,17 @@ public class BulletBehaviour : MonoBehaviour
 
     void Awake()
     {
-        destroyAfterSeconds = bulletData._BulletRange;
-        currentDamage = bulletData._HitDamage;
-        currentSpeed = bulletData._BulletSpeed;
-        currentPierce = bulletData._NumberOfHits;
+        if (bulletData != null)
+        {
+            destroyAfterSeconds = bulletData._BulletRange;
+            currentDamage = bulletData._HitDamage;
+            currentSpeed = bulletData._BulletSpeed;
+            currentPierce = bulletData._NumberOfHits;
+        }
+        else
+        {
+            Debug.LogError("NoBulletData!");
+        }
     }
 
 
@@ -49,10 +56,8 @@ public class BulletBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit something?");
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Hit!");
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage);
             ReducePierce();
