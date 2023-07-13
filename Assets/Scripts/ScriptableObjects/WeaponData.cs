@@ -9,6 +9,11 @@ public class WeaponData : ScriptableObject
     [Header("伤害模组")]
     public BulletData BulletType;
 
+    [Header("")]
+    [SerializeField]
+    GameObject weaponModel;
+    public GameObject _weaponModel { get => weaponModel; private set => weaponModel = value; }
+
     [Header("单次射击子弹数量")]
     [SerializeField]
     int OneShootBulletNum;
@@ -40,5 +45,5 @@ public class WeaponData : ScriptableObject
 
     [Header("武器插槽")]
     [SerializeField]
-    public List<GameObject> WeaponEX;
+    public List<WeaponEXData> WeaponEX;
 }

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: TestWeapon
   m_EditorClassIdentifier: 
   BulletType: {fileID: 11400000, guid: 3c12c696903918c4097d8367493f3e1f, type: 2}
+  weaponModel: {fileID: 4228365931688133127, guid: a289b446aad1c354c849ab51a03a78ab, type: 3}
   OneShootBulletNum: 1
   OneShootBulletCoolDown: 0
   OneShootBulletRange: 0
   CoolDown: 1
   CritRate: 25
-  LevelUpKill: 640000002c010000
+  LevelUpKill: 0a000000140000001e000000
   WeaponEX:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 2a72c4c2fbac1e040a399cc3f7846425, type: 2}
   - {fileID: 0}

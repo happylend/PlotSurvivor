@@ -70,10 +70,10 @@ public class EnemyStats : MonoBehaviour
     {
         //触发销毁
         //全局击杀计数器调用
-        EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        if (es != null)
+        GameControl GC = FindObjectOfType<GameControl>();
+        if (GC != null)
         {
-            es.OnEnemyKill();
+            GC.WhenEnemyDie();
         }
 
         //武器击杀调用

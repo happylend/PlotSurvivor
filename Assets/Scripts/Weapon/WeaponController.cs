@@ -5,12 +5,13 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public WeaponData weaponData;
-    public GameObject weaponModel;
+    //public GameObject weaponModel;
 
 
     private int currentBulletNum;
     private float currentCoolDown;
     private float currentOneShootBulletCoolDown;
+    private GameObject currentWeaponModel;
     private List<int> currentLevelUpKill = new List<int>();
 
     protected PlayerState playerState;
@@ -26,6 +27,7 @@ public class WeaponController : MonoBehaviour
             currentBulletNum = weaponData._OneShootBulletNum;
             currentCoolDown = weaponData._CoolDown;
             currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
+            currentWeaponModel = weaponData._weaponModel;
 
             if (weaponData.LevelUpKill.Count > 0)
             {
@@ -42,7 +44,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Instantiate(weaponModel, this.transform);
+        Instantiate(currentWeaponModel, this.transform);
     }
 
     // Update is called once per frame
@@ -61,12 +63,18 @@ public class WeaponController : MonoBehaviour
     }
 
     //ÎäÆ÷Éý¼¶
-    void LevelUp()
+    public void LevelUp()
     {
-        currentLevelUpKill[WeaponLevel]--;
-        if (currentLevelUpKill[WeaponLevel] <= 0)
+        if (WeaponLevel < currentLevelUpKill.Count)
         {
-            WeaponLevel++;
+            currentLevelUpKill[WeaponLevel]--;
+            if (currentLevelUpKill[WeaponLevel] <= 0)
+            {
+                WeaponLevel++;
+                Debug.Log("ÎäÆ÷Éý¼¶£¡");
+            }
+            Debug.Log("weaponkill " + (WeaponLevel + 1) + "£º " + currentLevelUpKill[WeaponLevel]);
         }
+
     }
 }
