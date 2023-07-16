@@ -30,7 +30,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -240,7 +240,7 @@ Material:
     - _Tranlucense_Center: {r: 1, g: 1, b: 1, a: 0}
     - _Tranlucense_Edge: {r: 0, g: 0, b: 0, a: 0}
     - _Translucense_Center: {r: 0, g: 0.09511185, b: 1, a: 0}
-    - _Translucense_Center_Tint: {r: 1.3357378, g: 0.2581801, b: 1.5638341, a: 0}
+    - _Translucense_Center_Tint: {r: 0.76258934, g: 2.0878413, b: 0.44317392, a: 0}
     - _Translucense_Edge: {r: 0.4716981, g: 0, b: 0, a: 0}
     - _Translucense_Edge_Tint: {r: 0, g: 0, b: 0, a: 0}
     - _Translucense_Intensity_Tint: {r: 0, g: 0, b: 0, a: 0}

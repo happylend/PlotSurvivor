@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX_Gear
+  m_Name: FX_Sphere
   m_Shader: {fileID: -6465566751694194690, guid: 361479e9961a8614f95a7500e8ff3893, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: aa384a01ad2734940838ed6da7bc3431, type: 3}
+        m_Texture: {fileID: 2800000, guid: f0fdc29bd795ea746adf7429c618aabd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectionMap:
@@ -133,25 +133,25 @@ Material:
     - _CastShadows: 1
     - _ConservativeDepthOffsetEnable: 0
     - _Cull: 2
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 1
+    - _CullModeForward: 1
     - _DepthOffsetEnable: 0
     - _Disortion_Weight: 0.1
-    - _Distortiion_Scale: 2.5
+    - _Distortiion_Scale: 1.17
     - _Distortion_Amount: 0.1
     - _Distortion_Fresnel: 0.72
     - _Distortion_Fresnel_Direction: 1
     - _Distortion_Fresnel_Power: 5.09
     - _Distortion_Power: 0.4
     - _Distortion_Strength: 0.05
-    - _Distortion_Weight: 0.012
+    - _Distortion_Weight: 0.1527
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
     - _EdgeDistort: 1
-    - _Edge_Bias: 1.08
-    - _Edge_Distortion: 0.04
+    - _Edge_Bias: 0.46
+    - _Edge_Distortion: 0.187
     - _Emission_Mask_Noise: 1
     - _Emission_Noise: 0
     - _Emission_Noise_Scale: 0.14
@@ -166,16 +166,16 @@ Material:
     - _Inflation_Offset: 0
     - _Inflation_Scale: 0.1
     - _Inflation_Speed: 8
-    - _Normal_Depth: 0.387
-    - _Normal_Height: 0.496
-    - _Normal_Scale: 0
+    - _Normal_Depth: 0
+    - _Normal_Height: 0.7
+    - _Normal_Scale: 0.1
     - _OpaqueCullMode: 2
     - _PanX: 0.1
     - _PanY: 0
     - _Power: 5
-    - _Pulse_Alpha: 0.314
-    - _Pulse_Scale: 0.03
-    - _Pulse_Speed: 2
+    - _Pulse_Alpha: 0
+    - _Pulse_Scale: 0.05
+    - _Pulse_Speed: 45.5
     - _Pulsing_Alpha: 0
     - _Pulsing_Alpha_Mult: 6
     - _Pulsing_Inflation: 0.0049
@@ -183,12 +183,12 @@ Material:
     - _Pulsing_Speed: 6
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Reflection_Scale: 0.18
+    - _Reflection_Scale: 9.6
     - _Refraction_Amount: 0.1
-    - _Refraction_Blur: 0.25
-    - _Refraction_Distortion: 0.347
-    - _RenderQueueType: 6
-    - _Rotate: 0
+    - _Refraction_Blur: 0
+    - _Refraction_Distortion: -0.7
+    - _RenderQueueType: 3
+    - _Rotate: -0.9
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 0
@@ -202,12 +202,12 @@ Material:
     - _StencilWriteMaskMV: 40
     - _Surface: 1
     - _SurfaceType: 1
-    - _Translate_X: 100
-    - _Translate_Y: 10
+    - _Translate_X: 0.5
+    - _Translate_Y: -11.4
     - _Translucence_Depth: 0.8
     - _Translucense_Bias: 5
     - _TransparentBackfaceEnable: 0
-    - _TransparentCullMode: 2
+    - _TransparentCullMode: 1
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
     - _TransparentSortPriority: 0
@@ -233,20 +233,20 @@ Material:
     - _Fresnel_Edge: {r: 0.4716981, g: 0, b: 0, a: 0}
     - _Max: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0}
     - _Min: {r: 0, g: 0.050680146, b: 0.1981132, a: 0}
-    - _Reflection_Tint: {r: 255.99997, g: 255.99997, b: 255.99997, a: 0}
+    - _Reflection_Tint: {r: 47.937256, g: 47.937256, b: 47.937256, a: 0}
     - _RefractionTint: {r: 170.89003, g: 170.89003, b: 170.89003, a: 0}
     - _Refraction_Intensity_Tint: {r: 1, g: 1, b: 1, a: 1}
-    - _Refraction_Tint: {r: 4.9867563, g: 8.238989, b: 8.282352, a: 0}
+    - _Refraction_Tint: {r: 0, g: 0, b: 0, a: 0}
     - _Tranlucense_Center: {r: 1, g: 1, b: 1, a: 0}
     - _Tranlucense_Edge: {r: 0, g: 0, b: 0, a: 0}
     - _Translucense_Center: {r: 0, g: 0.09511185, b: 1, a: 0}
-    - _Translucense_Center_Tint: {r: 0, g: 0, b: 0, a: 0}
+    - _Translucense_Center_Tint: {r: 0.42213142, g: 1.5638341, b: 0.26200357, a: 0}
     - _Translucense_Edge: {r: 0.4716981, g: 0, b: 0, a: 0}
-    - _Translucense_Edge_Tint: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
+    - _Translucense_Edge_Tint: {r: 0, g: 0, b: 0, a: 0}
     - _Translucense_Intensity_Tint: {r: 0, g: 0, b: 0, a: 0}
     - _Translucense_Tint: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &7179175773890274745
+--- !u!114 &6590773173936973481
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -25,4 +25,7 @@ public class EnemyAttributeData : ScriptableObject
     [SerializeField]
     int ShootDamage;
     public int _ShootDamage { get => ShootDamage; private set => ShootDamage = value; }
+
+    [Header("µôÂä°ü")]
+    public GameObject DropEXP;
 }

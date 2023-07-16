@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   MoveSpeed: 2
-  Damage: 5
+  HitDamage: 0
+  ShootDamage: 0
+  EXPObj: {fileID: 3796327701210424068, guid: 5f60101ea7410e24d91e21378e9b6961, type: 3}
