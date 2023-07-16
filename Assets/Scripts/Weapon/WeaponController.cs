@@ -71,10 +71,12 @@ public class WeaponController : MonoBehaviour
             if (currentLevelUpKill[WeaponLevel] <= 0)
             {
                 WeaponLevel++;
-                Debug.Log("ÎäÆ÷Éý¼¶£¡");
             }
-            Debug.Log("weaponkill " + (WeaponLevel + 1) + "£º " + currentLevelUpKill[WeaponLevel]);
         }
+        else
+        {
+            WeaponLevel = currentLevelUpKill.Count - 1;
 
+        }
     }
 }

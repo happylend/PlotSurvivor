@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5632608394092566679}
+  - {fileID: 8272304722096840412}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
+  player: {fileID: 0}
   despawnDistance: 40
 --- !u!114 &-6765684671787781487
 MonoBehaviour:
@@ -111,8 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
+  player: {fileID: 0}
   despawnDistance: 40
---- !u!1001 &7081999798208627707
+--- !u!1001 &6822526165493089712
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -168,13 +170,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee
       objectReference: {fileID: 0}
+    - target: {fileID: 3198499350616388748, guid: 9992beb367802434fbe4638bb61476bb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: a91bcb16522983b4bac6f212be1eb937, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9992beb367802434fbe4638bb61476bb, type: 3}
---- !u!4 &5632608394092566679 stripped
+--- !u!4 &8272304722096840412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3198499350608632684, guid: 9992beb367802434fbe4638bb61476bb, type: 3}
-  m_PrefabInstance: {fileID: 7081999798208627707}
+  m_PrefabInstance: {fileID: 6822526165493089712}
   m_PrefabAsset: {fileID: 0}

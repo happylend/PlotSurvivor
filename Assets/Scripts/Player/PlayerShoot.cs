@@ -26,14 +26,10 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if(hit.transform.tag!=("Player"))
-            {
-                aimPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+            aimPoint = new Vector3(hit.point.x, 0, hit.point.z);
 
-                float tempAngle = Vector3.Angle(transform.forward, aimPoint - transform.position);//自身和目标的夹角
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(aimPoint - transform.position), rotSpeed);
-            }
-
+            float tempAngle = Vector3.Angle(transform.forward, aimPoint - transform.position);//自身和目标的夹角
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(aimPoint - transform.position), rotSpeed);
 
         }
     }
