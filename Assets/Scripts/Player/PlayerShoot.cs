@@ -7,12 +7,6 @@ public class PlayerShoot : MonoBehaviour
     private Vector3 aimPoint;
     public float rotSpeed = 0.5f;
 
-    public GameObject Bullet;
-    public Transform spawnPosition;
-    [HideInInspector]
-    public int currentProjectile = 0;
-    public float speed = 1000;
-
     // Start is called before the first frame update
     void Start()
     {
