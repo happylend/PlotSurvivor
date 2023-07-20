@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static WeaponData;
 
 public class WeaponController : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class WeaponController : MonoBehaviour
     private float currentCoolDown;
     private float currentOneShootBulletCoolDown;
     private GameObject currentWeaponModel;
-    private List<int> currentLevelUpKill = new List<int>();
+    private List<WeaponLevel> currentLevelRanges = new List<WeaponLevel>();
 
     protected PlayerState playerState;
 
-    private int WeaponLevel = 0;
+    public int experience = 0;
+    public int WeaponLevel = 1;
+    public int experienceCap;
+
 
     protected virtual void Awake()
     {
@@ -29,22 +33,23 @@ public class WeaponController : MonoBehaviour
             currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
             currentWeaponModel = weaponData._weaponModel;
 
-            if (weaponData.LevelUpKill.Count > 0)
+            
+            if (weaponData.levelRanges.Count > 0)
             {
-                for (int i = 0; i < weaponData.LevelUpKill.Count; i++) 
+                foreach(WeaponLevel data in  weaponData.levelRanges)
                 {
-                    currentLevelUpKill.Add(weaponData.LevelUpKill[i]);
+                    currentLevelRanges.Add(data);
                 }
             }
+            
         }
-
-
-
     }
     // Start is called before the first frame update
     protected virtual void Start()
     {
         Instantiate(currentWeaponModel, this.transform);
+        //初始化
+        experienceCap = currentLevelRanges[0].experienceCapIncrease;
     }
 
     // Update is called once per frame
@@ -62,21 +67,58 @@ public class WeaponController : MonoBehaviour
         currentCoolDown = weaponData._CoolDown;
     }
 
-    //武器升级
-    public void LevelUp()
+    public void IncreaseExperience(int amount)
     {
-        if (WeaponLevel < currentLevelUpKill.Count)
+        experience += amount;
+
+        LevelUpChecker();
+    }
+
+    
+    void LevelUpChecker()
+    {
+        if (experience >= experienceCap)
         {
-            currentLevelUpKill[WeaponLevel]--;
-            if (currentLevelUpKill[WeaponLevel] <= 0)
+            WeaponLevel++;
+            experience -= experienceCap;
+
+            int experienceCapIncrease = 0;
+            foreach (WeaponLevel range in currentLevelRanges)
             {
-                WeaponLevel++;
+                if (WeaponLevel >= range.startLevel && WeaponLevel <= range.endLevel)
+                {
+                    experienceCapIncrease = range.experienceCapIncrease;
+                    break;
+                }
             }
+            experienceCap += experienceCapIncrease;
         }
-        else
+    }
+    
+    //武器升级
+    public void ChangeWeapon()
+    {
+        if (weaponData != null)
         {
-            WeaponLevel = currentLevelUpKill.Count - 1;
+            currentBulletNum = weaponData._OneShootBulletNum;
+            currentCoolDown = weaponData._CoolDown;
+            currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
+            currentWeaponModel = weaponData._weaponModel;
+
+
+            if (weaponData.levelRanges.Count > 0)
+            {
+                foreach (WeaponLevel data in weaponData.levelRanges)
+                {
+                    currentLevelRanges.Add(data);
+                }
+            }
 
         }
+
+        Instantiate(currentWeaponModel, this.transform);
+        //初始化
+        experienceCap = currentLevelRanges[0].experienceCapIncrease;
+
     }
 }

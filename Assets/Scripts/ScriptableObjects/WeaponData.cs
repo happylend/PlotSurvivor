@@ -41,9 +41,18 @@ public class WeaponData : ScriptableObject
 
     [Header("ÎäÆ÷ÊìÁ·¶È")]
     [SerializeField]
-    public List<int> LevelUpKill;
+    public List<WeaponLevel> levelRanges;
 
     [Header("ÎäÆ÷²å²Û")]
     [SerializeField]
     public List<WeaponEXData> WeaponEX;
+
+
+    [System.Serializable]
+    public class WeaponLevel
+    {
+        public int startLevel;
+        public int endLevel;
+        public int experienceCapIncrease;
+    }
 }

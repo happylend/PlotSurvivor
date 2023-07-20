@@ -27,7 +27,7 @@ public class GameControl : MonoBehaviour
     public void WhenEnemyDie()
     {
         enemySpawner.OnEnemyKill();
-        weaponController.LevelUp();
+        weaponController.IncreaseExperience(1);
     }
 
     //角色升级事件

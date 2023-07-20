@@ -114,15 +114,4 @@ public class PlayerState : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    /*
-    // 升级行为
-    public void LevelUp()
-    {
-        Level++;
-        MaxHealth += 10;
-        CurrentHealth = MaxHealth;
-        //attackPower += 5;
-        // TODO: 其他属性的升级
-    }
-    */
 }

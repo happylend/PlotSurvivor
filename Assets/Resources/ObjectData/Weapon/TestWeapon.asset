@@ -19,7 +19,13 @@ MonoBehaviour:
   OneShootBulletRange: 0
   CoolDown: 1
   CritRate: 25
-  LevelUpKill: 0a000000140000001e000000
+  levelRanges:
+  - startLevel: 1
+    endLevel: 2
+    experienceCapIncrease: 100
+  - startLevel: 2
+    endLevel: 99999
+    experienceCapIncrease: 200
   WeaponEX:
   - {fileID: 11400000, guid: 2a72c4c2fbac1e040a399cc3f7846425, type: 2}
   - {fileID: 0}
