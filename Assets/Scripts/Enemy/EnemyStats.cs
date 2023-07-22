@@ -12,9 +12,12 @@ public class EnemyStats : MonoBehaviour
 
 
     //µ±Ç°×´Ì¬
-    protected float currentMoveSpeed;
-    protected float currentHealth;
-    protected float currentDamage;
+    [SerializeField]
+    public float currentMoveSpeed;
+    [SerializeField]
+    public float currentHealth;
+    [SerializeField]
+    public float currentDamage;
 
     [SerializeField]
     Transform player;

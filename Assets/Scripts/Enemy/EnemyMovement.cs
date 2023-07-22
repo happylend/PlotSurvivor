@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : EnemyStats
+public class EnemyMovement : MonoBehaviour
 {
+    private EnemyStats enemyStats;
     Transform Player;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
+        if (enemyStats == null) { enemyStats = this.GetComponent<EnemyStats>(); }
+
         Player = FindObjectOfType<PlayerState>().transform;
         rb = GetComponent<Rigidbody>();
     }
@@ -34,8 +37,9 @@ public class EnemyMovement : EnemyStats
         }
         else // 没有碰撞，表示没有被阻挡
         {
-            //rb.velocity = Player.position * currentMoveSpeed;
-            transform.position = Vector3.MoveTowards(transform.position, Player.position, currentMoveSpeed * Time.deltaTime);
+            Vector3 targetDirection = (Player.position - transform.position).normalized;
+            rb.velocity = targetDirection * enemyStats.currentMoveSpeed;
+            //transform.position = Vector3.MoveTowards(transform.position, Player.position, enemyStats.currentMoveSpeed * Time.deltaTime);
         }
 
     }
