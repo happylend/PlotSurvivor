@@ -2164,7 +2164,7 @@ MonoBehaviour:
   - waveName: Wave1
     enemygroup:
     - enemyName: TestEnemy1
-      enemyCount: 100
+      enemyCount: 300
       spawnCount: 0
       enemyPrefabElementNum: 0
     waveQuota: 0
@@ -2173,13 +2173,13 @@ MonoBehaviour:
   - waveName: Wave2
     enemygroup:
     - enemyName: TestEnemy2
-      enemyCount: 100
+      enemyCount: 200
       spawnCount: 0
       enemyPrefabElementNum: 1
     waveQuota: 0
     spawnInterval: 1
     spawnCount: 0
-  currentWaveCount: -1
+  currentWaveCount: 0
   enemiesAlive: 0
   maxEnemiesAllowed: 20
   maxEnemiesReached: 0
