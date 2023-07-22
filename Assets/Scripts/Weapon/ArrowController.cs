@@ -16,7 +16,7 @@ public class ArrowController : WeaponController
         //´´½¨×Óµ¯
         GameObject ArrowBullet = Instantiate(base.weaponData.BulletType.Bullet.gameObject);
         ArrowBullet.transform.position = transform.position;
-        ArrowBullet.GetComponent<BulletBehaviour>().DirectionChecker(playerState.PlayerDir);
+        ArrowBullet.GetComponent<BulletBehaviour>().DirectionChecker(transform.parent.forward);
         
     }
 }

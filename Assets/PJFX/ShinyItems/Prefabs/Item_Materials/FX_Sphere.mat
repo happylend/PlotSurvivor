@@ -174,8 +174,8 @@ Material:
     - _PanY: 0
     - _Power: 5
     - _Pulse_Alpha: 0
-    - _Pulse_Scale: 0.05
-    - _Pulse_Speed: 45.5
+    - _Pulse_Scale: 0
+    - _Pulse_Speed: 0
     - _Pulsing_Alpha: 0
     - _Pulsing_Alpha_Mult: 6
     - _Pulsing_Inflation: 0.0049

@@ -90,12 +90,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554100986042877138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1.24}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5098625201701010205}
+  m_Father: {fileID: 4868207915791730292}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3811211409717493384
@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 40f1f5e18cb8fab47be41b8870026270, type: 2}
+  experience: 0
+  WeaponLevel: 1
+  experienceCap: 0
 --- !u!1 &599653060712281591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1680,52 @@ Transform:
   m_Father: {fileID: 8180288223770451654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4907269837353436377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4868207915791730292}
+  - component: {fileID: 7922785990646899850}
+  m_Layer: 6
+  m_Name: WeaponObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4868207915791730292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907269837353436377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4380380837032661078}
+  m_Father: {fileID: 5098625201701010205}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7922785990646899850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907269837353436377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a50f064520bc64ca4ed3833033530d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 0.5
 --- !u!1 &4944662661037988894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1834,7 @@ GameObject:
   - component: {fileID: 5098625201701010194}
   - component: {fileID: 6690712205196509265}
   - component: {fileID: 3292008668951973712}
-  - component: {fileID: 3141343290991730060}
+  - component: {fileID: 8113568383192826004}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1807,9 +1856,9 @@ Transform:
   m_Children:
   - {fileID: 1389079387750569456}
   - {fileID: 4226493658697732820}
-  - {fileID: 4380380837032661078}
+  - {fileID: 4868207915791730292}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5098625201701010195
 Rigidbody:
@@ -1876,6 +1925,16 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 9c5688edb2853ba408938230ca75a4df, type: 2}
   moveDir: {x: 0, y: 0, z: 0}
   PlayerDir: {x: 0, y: 0, z: 0}
+  experience: 0
+  level: 1
+  experienceCap: 0
+  levelRanges:
+  - startLevel: 1
+    endLevel: 5
+    experienceCapIncrease: 100
+  - startLevel: 6
+    endLevel: 999999
+    experienceCapIncrease: 1000
 --- !u!114 &3292008668951973712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,8 +1950,12 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 9c5688edb2853ba408938230ca75a4df, type: 2}
   moveDir: {x: 0, y: 0, z: 0}
   PlayerDir: {x: 0, y: 0, z: 0}
+  experience: 0
+  level: 1
+  experienceCap: 0
+  levelRanges: []
   animator: {fileID: 9064905568847935626}
---- !u!114 &3141343290991730060
+--- !u!114 &8113568383192826004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1901,14 +1964,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5098625201701010204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a50f064520bc64ca4ed3833033530d, type: 3}
+  m_Script: {fileID: 11500000, guid: c60f9593b6dd9144d86c49d7559f57ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 0.5
-  Bullet: {fileID: 0}
-  spawnPosition: {fileID: 0}
-  currentProjectile: 0
-  speed: 1000
 --- !u!1 &5172283243041637868
 GameObject:
   m_ObjectHideFlags: 0

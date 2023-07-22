@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1618674558355597842}
   - component: {fileID: 6713669394295833101}
   - component: {fileID: -6765684671787781487}
+  - component: {fileID: -2886134204498260339}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
@@ -114,6 +115,22 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
   player: {fileID: 0}
   despawnDistance: 40
+--- !u!114 &-2886134204498260339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460711611222930413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94487009baed584aa0e0b9c560a3656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - name: smallEXP
+    itemPrefabs: {fileID: 3796327701210424068, guid: 5f60101ea7410e24d91e21378e9b6961, type: 3}
+    dropRate: 50
 --- !u!1001 &2321714441654667057
 PrefabInstance:
   m_ObjectHideFlags: 0

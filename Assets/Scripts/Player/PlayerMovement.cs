@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : PlayerState
+public class PlayerMovement : MonoBehaviour
 {
+    private PlayerState playerState;
     public Animator animator; // 动画控制器
     private bool isBlocked; // 是否被阻挡
     GameObject playerModel;
 
+    public Vector3 moveDir;
+    public Vector3 PlayerDir;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (playerState == null) { playerState = this.GetComponent<PlayerState>(); }
         if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
         if(playerModel == null) { playerModel=this.GetComponentInChildren<Animator>().gameObject; }
 
@@ -19,7 +24,6 @@ public class PlayerMovement : PlayerState
     // Update is called once per frame
     void Update()
     {
-        PlayerDir = transform.forward;
         InputManagement();
 
     }
@@ -65,7 +69,7 @@ public class PlayerMovement : PlayerState
             }
 
             //调用移动
-            Move(movement);
+            playerState.Move(movement);
             animator.SetBool("run", true);
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public EnemyAttributeData enemyData;
+    private GameControl gameControl;
+    private DropRateManager dropRateManager;
+    private EnemyMovement enemyMovement;
+
 
     //当前状态
     protected float currentMoveSpeed;
@@ -33,18 +38,26 @@ public class EnemyStats : MonoBehaviour
         }
 
     }
-    // Start is called before the first frame update
+
+    //数据初始化
+    void OnEnable()
+    {
+        OpenObj();
+    }
 
     void Start()
     {
         player = FindObjectOfType<PlayerState>().transform;
-        if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
-    }
 
-    //每次激活时刷新属性
-    void OnEnable()
-    {
-        
+        if (gameControl == null) { gameControl = FindObjectOfType<GameControl>(); }
+
+        if (dropRateManager == null) { dropRateManager = this.GetComponent<DropRateManager>(); }
+        if (enemyMovement == null) { enemyMovement = this.GetComponent<EnemyMovement>(); }
+
+        if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
+
+
+
     }
 
     public void TakeDamage(float dmg)
@@ -55,6 +68,10 @@ public class EnemyStats : MonoBehaviour
         {
             Kill();
         }
+        else
+        {
+            Hit();
+        }    
     }
 
     // Update is called once per frame
@@ -66,21 +83,34 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    public void Kill()
+    //受击触发
+    public void Hit()
     {
-        //触发销毁
-        //全局击杀计数器调用
-        GameControl GC = FindObjectOfType<GameControl>();
-        if (GC != null)
-        {
-            GC.WhenEnemyDie();
-        }
-
-        //武器击杀调用
         
 
+    }
 
-        animator.SetBool("Die", true);
+    //死亡触发
+    public void Kill()
+    {
+        //监听动画
+        StartCoroutine(PlayDeathAnimation());
+
+        //全局击杀计数器调用
+        gameControl.WhenEnemyDie();
+
+        //掉落器调用
+        dropRateManager.DropItem();
+
+        //武器击杀调用
+
+        //停止NPC状态
+        CloseObj();
+    }
+
+    //资源池回收
+    public void DestoryObj()
+    {
         deactivateAction.Invoke(this);
     }
 
@@ -94,6 +124,50 @@ public class EnemyStats : MonoBehaviour
     void ReturnEnemy()
     {
         EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        transform.position = player.position + es.relativesSpawnPoints[Random.Range(0, es.relativesSpawnPoints.Count)].position;
+        transform.position = player.position + es.relativesSpawnPoints[UnityEngine.Random.Range(0, es.relativesSpawnPoints.Count)].position;
+    }
+
+    //关闭对象事件
+    void CloseObj()
+    {
+        if (enemyMovement != null)
+        {
+            enemyMovement.enabled = false;
+        }
+
+        this.GetComponent<BoxCollider>().enabled = false;
+    }
+
+
+    //开启对象事件
+    void OpenObj()
+    {
+        if (enemyData != null)
+        {
+            currentDamage = enemyData._HitDamage;
+            currentHealth = enemyData._MaxHealth;
+            currentMoveSpeed = enemyData._MoveSpeed;
+        }
+
+        if (enemyMovement != null)
+        {
+            enemyMovement.enabled = true;
+        }
+
+        this.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    // 协程：播放死亡动画并销毁对象
+    private IEnumerator PlayDeathAnimation()
+    {
+        // 播放死亡动画
+        animator.SetBool("Die", true);
+
+        // 等待动画播放完成
+        float deathAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(deathAnimationLength);
+
+        // 销毁对象
+        DestoryObj();
     }
 }

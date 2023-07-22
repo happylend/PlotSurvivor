@@ -11,12 +11,13 @@ public class PlayerState : MonoBehaviour
     protected float currentMoveSpeed;
 
     Rigidbody rb;
-    public Vector3 moveDir;
-    public Vector3 PlayerDir;
 
-    [Header("Experience/Level")]
+
+    [Header("当前经验")]
     public int experience = 0;
+    [Header("当前等级")]
     public int level = 1;
+    [Header("升级所需经验值")]
     public int experienceCap;
 
 
@@ -25,6 +26,7 @@ public class PlayerState : MonoBehaviour
     {
         public int startLevel;
         public int endLevel;
+        [Header("所需经验值增长值")]
         public int experienceCapIncrease;
     }
 
@@ -64,6 +66,7 @@ public class PlayerState : MonoBehaviour
         {
             level++;
             experience -= experienceCap;
+            Debug.Log("升级了！");
 
             int experienceCapIncrease = 0;
             foreach(LevelRange range in levelRanges)
@@ -81,7 +84,7 @@ public class PlayerState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerDir = transform.forward;
+        
     }
 
     // 移动行为

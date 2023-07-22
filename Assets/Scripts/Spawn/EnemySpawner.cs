@@ -14,11 +14,11 @@ public class EnemySpawner : MonoBehaviour
         [Header("该波次的敌人种类")]
         public List<EnemyGroup> enemygroup;
         [Header("当前波次的敌人的总数")]
-        public int waveQuota;    //每波创建敌人的总数
+        public int waveQuota;   
         [Header("创建敌人间隔")]
-        public float spawnInterval; //创建敌人的间隔
-        [Header("已创建敌人数量")]
-        public int spawnCount;      //当前波次中场景中已有的敌人数量
+        public float spawnInterval; 
+        [Header("当前敌人数量")]
+        public int spawnCount;     
     }
 
     //每波中敌人参数
@@ -37,32 +37,40 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public List<Wave> waves;    //当前游戏中的所有波次
-    public int currentWaveCount;    //当前波数
+
+
+    [Header("当前波次")]
+    public int currentWaveCount = 0;
 
     float spawnTimer = 0;
 
+    [Header("当前存活敌人数")]
     public int enemiesAlive;
+    [Header("最大存活敌人数")]
     public int maxEnemiesAllowed;
+    [Header("是否到达最大存活敌人数")]
     public bool maxEnemiesReached = false;
+    [Header("每一波开始后，下一波开始倒计时")]
     public float waveInterval;
 
-    public int enemiesKill;
-
+    [Header("刷怪点")]
     public List<Transform> relativesSpawnPoints;
-
-    private Transform Player;
 
     private EnemyPool enemyPool;
 
-    bool firstStart = true;
+    void Awake()
+    {
+        currentWaveCount = 0;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = FindObjectOfType<PlayerState>().transform;
         enemyPool = this.GetComponent<EnemyPool>();
 
         CalculateWaveQuota();
+
+
     }
 
     void OnEnable()
@@ -73,13 +81,6 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //生成第一波
-        if(firstStart)
-        {
-            SpawnEnemies();
-            firstStart = false;
-        }
-
         if (currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0)
         {
             StartCoroutine(BeginNextWave());
@@ -91,6 +92,7 @@ public class EnemySpawner : MonoBehaviour
             spawnTimer = 0f;
             SpawnEnemies();
         }
+
     }
 
     IEnumerator BeginNextWave()
@@ -100,6 +102,7 @@ public class EnemySpawner : MonoBehaviour
         //如果有更多的波数在此次之后，开始下一个波数
         if (currentWaveCount < waves.Count - 1)
         {
+            Debug.Log("下一波");
             currentWaveCount++;
             CalculateWaveQuota();
         }
@@ -107,6 +110,7 @@ public class EnemySpawner : MonoBehaviour
 
     void CalculateWaveQuota()
     {
+        Debug.Log("刷怪");
         int currentWaveQuota = 0;
         foreach(var enemyGroup in waves[currentWaveCount].enemygroup)
         {
@@ -114,7 +118,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         waves[currentWaveCount].waveQuota = currentWaveQuota;
-        Debug.Log(currentWaveQuota);
     }
 
     void SpawnEnemies()
@@ -150,7 +153,6 @@ public class EnemySpawner : MonoBehaviour
     public void OnEnemyKill()
     {
         enemiesAlive--;
-        enemiesKill++;
     }
 
 
