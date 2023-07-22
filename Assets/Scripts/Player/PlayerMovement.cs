@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
         if (moveDir.x != 0f || moveDir.z != 0f) // 只有有输入才移动和旋转角色
         {
             Vector3 movement = new Vector3(moveDir.x, 0f, moveDir.z);
-
             // 根据移动方向旋转角色
             Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
             playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, targetRotation, 0.15f);
@@ -76,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("run", false);
+            playerState.Move(Vector3.zero);
         }
 
     }

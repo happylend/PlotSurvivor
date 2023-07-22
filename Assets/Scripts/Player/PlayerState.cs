@@ -35,11 +35,6 @@ public class PlayerState : MonoBehaviour
 
     public List<LevelRange> levelRanges;
 
-    [Header("I-Frames")]
-    public float invincibilityDuration;
-    float invincibilityTimer;
-    bool isInvincible;
-
     void Awake() 
     {
         if (playerData != null)
@@ -90,22 +85,14 @@ public class PlayerState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //玩家最小受伤时间间隔
-        if (invincibilityTimer > 0)
-        {
-            invincibilityTimer -= Time.deltaTime;
-        }
-        else if(isInvincible)
-        {
-            isInvincible = false;
-
-        }
+       
     }
 
     // 移动行为
     public void Move(Vector3 direction)
     {
-        transform.position += direction.normalized * currentMoveSpeed * Time.deltaTime;
+        rb.velocity = direction * currentMoveSpeed;
+        //transform.position += direction.normalized * currentMoveSpeed * Time.deltaTime;
     }
 
     // 攻击行为
@@ -118,18 +105,13 @@ public class PlayerState : MonoBehaviour
     // 受伤行为
     public void TakeDamage(float damage)
     {
-        if (!isInvincible)
-        {
+       
             currentHealth -= damage;
-
-            invincibilityTimer = invincibilityDuration;
-            isInvincible = true;
 
             if (currentHealth <= 0)
             {
                 Die();
             }
-        }
 
     }
 

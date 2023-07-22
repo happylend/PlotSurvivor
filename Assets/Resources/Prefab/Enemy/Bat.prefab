@@ -62,8 +62,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!65 &-1618674558355597842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100,6 +100,8 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
   player: {fileID: 0}
   despawnDistance: 40
+  invincibilityDuration: 1
+  isInvincible: 0
 --- !u!114 &-6765684671787781487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +117,8 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
   player: {fileID: 0}
   despawnDistance: 40
+  invincibilityDuration: 0
+  isInvincible: 0
 --- !u!114 &-2886134204498260339
 MonoBehaviour:
   m_ObjectHideFlags: 0

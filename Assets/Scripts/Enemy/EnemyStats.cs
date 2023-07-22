@@ -25,6 +25,9 @@ public class EnemyStats : MonoBehaviour
 
     Animator animator;
 
+    public float invincibilityDuration;
+    float invincibilityTimer;
+    public bool isInvincible;
 
     System.Action<EnemyStats> deactivateAction;
 
@@ -60,6 +63,27 @@ public class EnemyStats : MonoBehaviour
 
     }
 
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Vector3.Distance(transform.position, player.position) >= despawnDistance)
+        {
+            ReturnEnemy();
+        }
+
+        //造成伤害的最小时间间隔
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+        }
+        else if (isInvincible)
+        {
+            isInvincible = false;
+
+        }
+    }
+
     public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
@@ -71,15 +95,6 @@ public class EnemyStats : MonoBehaviour
         else
         {
             Hit();
-        }    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Vector3.Distance(transform.position, player.position) >= despawnDistance)
-        {
-            ReturnEnemy();
         }
     }
 
@@ -171,13 +186,19 @@ public class EnemyStats : MonoBehaviour
         DestoryObj();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerState player = collision.gameObject.GetComponent<PlayerState>();
-            player.TakeDamage(currentDamage);
-        }
+            if (!isInvincible)
+            {
+                invincibilityTimer = invincibilityDuration;
+                isInvincible = true;
 
+                Debug.Log(collision.transform.name + " Hit");
+                PlayerState player = collision.gameObject.GetComponent<PlayerState>();
+                player.TakeDamage(currentDamage);
+            }
+        }
     }
 }
