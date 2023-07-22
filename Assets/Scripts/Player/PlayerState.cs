@@ -6,9 +6,12 @@ public class PlayerState : MonoBehaviour
 {
     public AttributeBase playerData;
 
-    protected float currentHealth;
-    protected float currentRecovery;
-    protected float currentMoveSpeed;
+    [SerializeField]
+    public float currentHealth;
+    [SerializeField]
+    public float currentRecovery;
+    [SerializeField]
+    public float currentMoveSpeed;
 
     Rigidbody rb;
 
@@ -32,9 +35,12 @@ public class PlayerState : MonoBehaviour
 
     public List<LevelRange> levelRanges;
 
-    
+    [Header("I-Frames")]
+    public float invincibilityDuration;
+    float invincibilityTimer;
+    bool isInvincible;
 
-    void Awake()
+    void Awake() 
     {
         if (playerData != null)
         {
@@ -84,7 +90,16 @@ public class PlayerState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //玩家最小受伤时间间隔
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+        }
+        else if(isInvincible)
+        {
+            isInvincible = false;
+
+        }
     }
 
     // 移动行为
@@ -101,20 +116,28 @@ public class PlayerState : MonoBehaviour
     }
 
     // 受伤行为
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (!isInvincible)
         {
-            Die();
+            currentHealth -= damage;
+
+            invincibilityTimer = invincibilityDuration;
+            isInvincible = true;
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
+
     }
 
     // 死亡行为
     public void Die()
     {
         // TODO: 角色死亡后的处理
-        gameObject.SetActive(false);
+        Debug.Log("Player is dead");
     }
 
 }

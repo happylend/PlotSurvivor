@@ -23,7 +23,7 @@ public class EnemyMovement : EnemyStats
         transform.LookAt(Player);
         // 检测是否会碰到障碍物
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward , out hit, 1))
+        if (Physics.Raycast(transform.position, transform.forward , out hit, 0.01f))
         {
             if (!hit.collider.isTrigger) // 如果碰撞体不是触发器，表示被阻挡了
             {

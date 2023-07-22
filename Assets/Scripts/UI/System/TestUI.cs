@@ -11,6 +11,7 @@ public class TestUI : MonoBehaviour
     int LevelNum = 0;
     int ExperienceNum = 0;
     int ExperienceCupNum = 0;
+    float hp = 0;
 
     public Text killText;
     public Text weaponLevelText;
@@ -18,6 +19,7 @@ public class TestUI : MonoBehaviour
     public Text levelText;
     public Text experienceText;
     public Text experienceCupText;
+    public Text hpText;
 
     WeaponController weaponController;
     PlayerState playerState;
@@ -48,6 +50,9 @@ public class TestUI : MonoBehaviour
 
         ExperienceCupNum = playerState.experienceCap;
         experienceCupText.text = ExperienceCupNum.ToString();
+
+        hp = playerState.currentHealth;
+        hpText.text = hp.ToString();
 
     }
 }

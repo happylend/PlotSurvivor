@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: newPlayerData
   m_EditorClassIdentifier: Assembly-CSharp::AttributeBase
   CharacterName: 
-  MaxHealth: 20
+  MaxHealth: 100
   HealthRecovery: 0
   Level: 0
   Experience: 0

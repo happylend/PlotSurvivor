@@ -170,4 +170,14 @@ public class EnemyStats : MonoBehaviour
         // Ïú»Ù¶ÔÏó
         DestoryObj();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerState player = collision.gameObject.GetComponent<PlayerState>();
+            player.TakeDamage(currentDamage);
+        }
+
+    }
 }
