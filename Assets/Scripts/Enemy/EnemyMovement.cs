@@ -32,6 +32,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if (!hit.collider.isTrigger) // 如果碰撞体不是触发器，表示被阻挡了
             {
+                
                 return; // 不进行移动和旋转
             }
         }
