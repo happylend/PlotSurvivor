@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerState playerState;
-    public Animator animator; // 动画控制器
+    private Animator animator; // 动画控制器
     private bool isBlocked; // 是否被阻挡
     GameObject playerModel;
 
     public Vector3 moveDir;
     public Vector3 PlayerDir;
+
+    Rigidbody rb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) { animator = this.GetComponentInChildren<Animator>(); }
         if(playerModel == null) { playerModel=this.GetComponentInChildren<Animator>().gameObject; }
 
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -68,14 +72,14 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //调用移动
-            playerState.Move(movement);
+            rb.velocity = movement * playerState.currentMoveSpeed;
             animator.SetBool("run", true);
         }
 
         else
         {
             animator.SetBool("run", false);
-            playerState.Move(Vector3.zero);
+            rb.velocity = Vector3.zero * playerState.currentMoveSpeed;
         }
 
     }

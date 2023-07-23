@@ -8,24 +8,27 @@ public class WeaponController : MonoBehaviour
     public WeaponData weaponData;
     //public GameObject weaponModel;
 
+    [HideInInspector]
+    public int currentBulletNum;
+    [HideInInspector]
+    public float currentCoolDown;
+    [HideInInspector]
+    public float currentOneShootBulletCoolDown;
+    [HideInInspector]
+    public GameObject currentWeaponModel;
+    [HideInInspector]
+    public List<WeaponLevel> currentLevelRanges = new List<WeaponLevel>();
 
-    private int currentBulletNum;
-    private float currentCoolDown;
-    private float currentOneShootBulletCoolDown;
-    private GameObject currentWeaponModel;
-    private List<WeaponLevel> currentLevelRanges = new List<WeaponLevel>();
-
-    protected PlayerState playerState;
-
+    [HideInInspector]
     public int experience = 0;
+    [HideInInspector]
     public int WeaponLevel = 1;
+    [HideInInspector]
     public int experienceCap;
 
 
     protected virtual void Awake()
     {
-        playerState = FindObjectOfType<PlayerState>();
-
         if (weaponData != null)
         {
             currentBulletNum = weaponData._OneShootBulletNum;

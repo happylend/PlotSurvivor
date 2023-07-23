@@ -6,14 +6,15 @@ public class PlayerState : MonoBehaviour
 {
     public AttributeBase playerData;
 
-    [SerializeField]
+    [HideInInspector]
     public float currentHealth;
-    [SerializeField]
+    [HideInInspector]
     public float currentRecovery;
-    [SerializeField]
+    [HideInInspector]
     public float currentMoveSpeed;
+    [HideInInspector]
+    public float currentMagnet;
 
-    Rigidbody rb;
 
 
     [Header("当前经验")]
@@ -42,9 +43,8 @@ public class PlayerState : MonoBehaviour
             currentHealth = playerData._MaxHealth;
             currentRecovery = playerData._HealthRecovery;
             currentMoveSpeed = playerData._MoveSpeed;
+            currentMagnet = playerData._Magnet;
         }
-
-        rb = GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update
@@ -53,6 +53,14 @@ public class PlayerState : MonoBehaviour
         //初始化
         experienceCap = levelRanges[0].experienceCapIncrease;
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Recover();
+    }
+
+
 
     public void IncreaseExperience(int amount)
     {
@@ -82,19 +90,6 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
-    // 移动行为
-    public void Move(Vector3 direction)
-    {
-        rb.velocity = direction * currentMoveSpeed;
-        //transform.position += direction.normalized * currentMoveSpeed * Time.deltaTime;
-    }
-
     // 攻击行为
     public void Attack(PlayerState target)
     {
@@ -122,4 +117,17 @@ public class PlayerState : MonoBehaviour
         Debug.Log("Player is dead");
     }
 
+    //自然恢复生命值
+    void Recover()
+    {
+        if (currentHealth < playerData._MaxHealth)
+        {
+            currentHealth += currentRecovery * Time.deltaTime;
+        }
+
+        if(currentHealth > playerData._MaxHealth)
+        {
+            currentHealth = playerData._MaxHealth;
+        }
+    }
 }

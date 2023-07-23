@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttributeBase
   CharacterName: 
   MaxHealth: 100
-  HealthRecovery: 0
-  Level: 0
+  HealthRecovery: 0.5
+  Level: 1
   Experience: 0
   MoveSpeed: 4
+  Magnet: 3

@@ -12,17 +12,17 @@ public class EnemyStats : MonoBehaviour
 
 
     //µ±Ç°×´Ì¬
-    [SerializeField]
+    [HideInInspector]
     public float currentMoveSpeed;
-    [SerializeField]
+    [HideInInspector]
     public float currentHealth;
-    [SerializeField]
+    [HideInInspector]
     public float currentDamage;
 
-    [SerializeField]
+    [HideInInspector]
     Transform player;
 
-    [SerializeField]
+    [HideInInspector]
     private float despawnDistance = 40f;
 
 

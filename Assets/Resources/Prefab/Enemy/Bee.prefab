@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
-  player: {fileID: 0}
-  despawnDistance: 40
+  currentMoveSpeed: 0
+  currentHealth: 0
+  currentDamage: 0
   invincibilityDuration: 1
   isInvincible: 0
 --- !u!114 &-6765684671787781487
@@ -114,11 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb89c3090ae32d146866a44179c0faf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: efa3d6735e844c74e9c85352160ad6e0, type: 2}
-  player: {fileID: 0}
-  despawnDistance: 40
-  invincibilityDuration: 0
-  isInvincible: 0
 --- !u!114 &7664078432349845737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - name: 
+  - name: exp
     itemPrefabs: {fileID: 3796327701210424068, guid: 5f60101ea7410e24d91e21378e9b6961, type: 3}
     dropRate: 50
 --- !u!1001 &6822526165493089712

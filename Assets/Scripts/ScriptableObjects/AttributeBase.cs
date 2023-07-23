@@ -37,4 +37,9 @@ public class AttributeBase : ScriptableObject
     private float MoveSpeed;
     public float _MoveSpeed { get => MoveSpeed;set => MoveSpeed = value; }
 
+    [Header("ÊÕ¼¯·¶Î§")]
+    [SerializeField]
+    float Magnet;
+    public float _Magnet { get => Magnet; set => Magnet = value; }
+
 }
