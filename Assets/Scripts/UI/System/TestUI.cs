@@ -51,7 +51,7 @@ public class TestUI : MonoBehaviour
         ExperienceCupNum = playerState.experienceCap;
         experienceCupText.text = ExperienceCupNum.ToString();
 
-        hp = playerState.currentHealth;
+        hp = playerState.CurrentHealth;
         hpText.text = hp.ToString();
 
     }

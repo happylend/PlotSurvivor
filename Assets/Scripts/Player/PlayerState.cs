@@ -4,17 +4,67 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public AttributeBase playerData;
+    AttributeBase playerData;
 
-    [HideInInspector]
-    public float currentHealth;
-    [HideInInspector]
-    public float currentRecovery;
-    [HideInInspector]
-    public float currentMoveSpeed;
-    [HideInInspector]
-    public float currentMagnet;
+    float currentHealth;
+    float currentRecovery;
+    float currentMoveSpeed;
+    float currentMagnet;
 
+    #region 当前角色属性
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        //检测当前生命值是否发生变化
+        set 
+        { 
+            if (currentHealth != value) 
+            { 
+                currentHealth = value; 
+
+            } 
+        }
+    }
+
+    public float CurrentRecovery
+    {
+        get { return currentRecovery; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentRecovery != value)
+            {
+                currentRecovery = value;
+            }
+        }
+    }
+
+    public float CurrentMoveSpeed
+    {
+        get { return currentMoveSpeed; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentMoveSpeed != value)
+            {
+                currentMoveSpeed = value;
+            }
+        }
+    }
+
+    public float CurrentMagnet
+    {
+        get { return currentMagnet; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentMagnet != value)
+            {
+                currentMagnet = value;
+            }
+        }
+    }
+    #endregion
 
 
     [Header("当前经验")]
@@ -36,14 +86,23 @@ public class PlayerState : MonoBehaviour
 
     public List<LevelRange> levelRanges;
 
+    InventoryManager inventory;
+    public int weaponIndex;
+    public int passiveItemIndex;
+
+
     void Awake() 
     {
+        playerData = CharacterSelect.GetData();
+
         if (playerData != null)
         {
-            currentHealth = playerData._MaxHealth;
-            currentRecovery = playerData._HealthRecovery;
-            currentMoveSpeed = playerData._MoveSpeed;
-            currentMagnet = playerData._Magnet;
+            CurrentHealth = playerData._MaxHealth;
+            CurrentRecovery = playerData._HealthRecovery;
+            CurrentMoveSpeed = playerData._MoveSpeed;
+            CurrentMagnet = playerData._Magnet;
+
+            inventory = FindObjectOfType<InventoryManager>();
         }
     }
 
@@ -52,6 +111,7 @@ public class PlayerState : MonoBehaviour
     {
         //初始化
         experienceCap = levelRanges[0].experienceCapIncrease;
+        CharacterSelect.instance.DestroySingleton();
     }
 
     // Update is called once per frame
@@ -101,9 +161,9 @@ public class PlayerState : MonoBehaviour
     public void TakeDamage(float damage)
     {
        
-            currentHealth -= damage;
+            CurrentHealth -= damage;
 
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 Die();
             }
@@ -120,14 +180,29 @@ public class PlayerState : MonoBehaviour
     //自然恢复生命值
     void Recover()
     {
-        if (currentHealth < playerData._MaxHealth)
+        if (CurrentHealth < playerData._MaxHealth)
         {
-            currentHealth += currentRecovery * Time.deltaTime;
+            CurrentHealth += currentRecovery * Time.deltaTime;
         }
 
-        if(currentHealth > playerData._MaxHealth)
+        if(CurrentHealth > playerData._MaxHealth)
         {
-            currentHealth = playerData._MaxHealth;
+            CurrentHealth = playerData._MaxHealth;
         }
+    }
+
+    public void SpawnPassiveItem(GameObject passiveItem)
+    {
+        if (passiveItemIndex >= inventory.passiveSlots.Count - 1)
+        {
+            Debug.LogError("full!");
+                return;
+        }
+
+        GameObject spawnedPassiveItem = Instantiate(passiveItem, transform.position, Quaternion.identity);
+        spawnedPassiveItem.transform.SetParent(transform);
+        inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>());
+
+        passiveItemIndex++;
     }
 }

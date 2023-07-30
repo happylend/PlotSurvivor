@@ -9,11 +9,11 @@ public class BulletBehaviour : MonoBehaviour
     protected Vector3 direction;
     
     
-    protected float destroyAfterSeconds;
-    protected float currentDamage;
-    protected float currentSpeed;
-    protected float currentcooldownDuration;
-    protected float currentPierce;
+    public float destroyAfterSeconds;
+    public float currentDamage;
+    public float currentSpeed;
+    public float currentcooldownDuration;
+    public float currentPierce;
 
     void Awake()
     {
@@ -71,5 +71,10 @@ public class BulletBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public float GetCurrentDamage()
+    {
+        return currentDamage;
     }
 }

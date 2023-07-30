@@ -14,7 +14,7 @@ public class ArrowController : WeaponController
     {
         base.Attack();
         //´´½¨×Óµ¯
-        GameObject ArrowBullet = Instantiate(base.weaponData.BulletType.Bullet.gameObject);
+        GameObject ArrowBullet = Instantiate(CurrentbuttleObj);
         ArrowBullet.transform.position = transform.position;
         ArrowBullet.GetComponent<BulletBehaviour>().DirectionChecker(transform.parent.forward);
         

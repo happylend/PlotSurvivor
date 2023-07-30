@@ -5,17 +5,16 @@ using static WeaponData;
 
 public class WeaponController : MonoBehaviour
 {
-    public WeaponData weaponData;
+    WeaponData weaponData;
     //public GameObject weaponModel;
 
-    [HideInInspector]
-    public int currentBulletNum;
-    [HideInInspector]
-    public float currentCoolDown;
-    [HideInInspector]
-    public float currentOneShootBulletCoolDown;
-    [HideInInspector]
-    public GameObject currentWeaponModel;
+
+    GameObject currentbuttleObj;
+    int currentBulletNum;
+    float currentCoolDown;
+    float currentOneShootBulletCoolDown;
+    GameObject currentWeaponModel;
+
     [HideInInspector]
     public List<WeaponLevel> currentLevelRanges = new List<WeaponLevel>();
 
@@ -26,15 +25,86 @@ public class WeaponController : MonoBehaviour
     [HideInInspector]
     public int experienceCap;
 
+    #region 当前武器属性
+    public GameObject CurrentbuttleObj
+    {
+        get { return currentbuttleObj; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentbuttleObj != value)
+            {
+                currentbuttleObj = value;
+            }
+        }
+    }
+
+    public int CurrentBulletNum
+    {
+        get { return currentBulletNum; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentBulletNum != value)
+            {
+                currentBulletNum = value;
+            }
+        }
+    }
+
+    public float CurrentCoolDown
+    {
+        get { return currentCoolDown; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentCoolDown != value)
+            {
+                currentCoolDown = value;
+            }
+        }
+    }
+
+    public float CurrentOneShootBulletCoolDown
+    {
+        get { return currentOneShootBulletCoolDown; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentOneShootBulletCoolDown != value)
+            {
+                currentOneShootBulletCoolDown = value;
+            }
+        }
+    }
+
+    public GameObject CurrentWeaponModel
+    {
+        get { return currentWeaponModel; }
+        //检测当前生命值是否发生变化
+        set
+        {
+            if (currentWeaponModel != value)
+            {
+                currentWeaponModel = value;
+            }
+        }
+    }
+
+    #endregion
+
 
     protected virtual void Awake()
     {
+        weaponData = CharacterSelect.GetWeapon();
+
         if (weaponData != null)
         {
-            currentBulletNum = weaponData._OneShootBulletNum;
-            currentCoolDown = weaponData._CoolDown;
-            currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
-            currentWeaponModel = weaponData._weaponModel;
+            CurrentbuttleObj = weaponData.BulletType.Bullet;
+            CurrentBulletNum = weaponData._OneShootBulletNum;
+            CurrentCoolDown = weaponData._CoolDown;
+            CurrentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
+            CurrentWeaponModel = weaponData._weaponModel;
 
             
             if (weaponData.levelRanges.Count > 0)
@@ -50,7 +120,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Instantiate(currentWeaponModel, this.transform);
+        Instantiate(CurrentWeaponModel, this.transform);
         //初始化
         experienceCap = currentLevelRanges[0].experienceCapIncrease;
     }
@@ -58,8 +128,8 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        currentCoolDown -= Time.deltaTime;
-        if(currentCoolDown <= 0f )
+        CurrentCoolDown -= Time.deltaTime;
+        if(CurrentCoolDown <= 0f )
         {
             Attack();
         }
@@ -67,7 +137,7 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        currentCoolDown = weaponData._CoolDown;
+        CurrentCoolDown += weaponData._CoolDown;
     }
 
     public void IncreaseExperience(int amount)
@@ -103,10 +173,10 @@ public class WeaponController : MonoBehaviour
     {
         if (weaponData != null)
         {
-            currentBulletNum = weaponData._OneShootBulletNum;
-            currentCoolDown = weaponData._CoolDown;
-            currentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
-            currentWeaponModel = weaponData._weaponModel;
+            CurrentBulletNum = weaponData._OneShootBulletNum;
+            CurrentCoolDown = weaponData._CoolDown;
+            CurrentOneShootBulletCoolDown = weaponData._OneShootBulletCoolDown;
+            CurrentWeaponModel = weaponData._weaponModel;
 
 
             if (weaponData.levelRanges.Count > 0)
@@ -119,7 +189,7 @@ public class WeaponController : MonoBehaviour
 
         }
 
-        Instantiate(currentWeaponModel, this.transform);
+        Instantiate(CurrentWeaponModel, this.transform);
         //初始化
         experienceCap = currentLevelRanges[0].experienceCapIncrease;
 

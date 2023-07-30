@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isBlocked; // 是否被阻挡
     GameObject playerModel;
 
+    [HideInInspector]
     public Vector3 moveDir;
+    [HideInInspector]
     public Vector3 PlayerDir;
 
     Rigidbody rb;
@@ -72,14 +74,14 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //调用移动
-            rb.velocity = movement * playerState.currentMoveSpeed;
+            rb.velocity = movement * playerState.CurrentMoveSpeed;
             animator.SetBool("run", true);
         }
 
         else
         {
             animator.SetBool("run", false);
-            rb.velocity = Vector3.zero * playerState.currentMoveSpeed;
+            rb.velocity = Vector3.zero * playerState.CurrentMoveSpeed;
         }
 
     }
