@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerState : MonoBehaviour
 {
@@ -90,6 +91,9 @@ public class PlayerState : MonoBehaviour
     public int weaponIndex;
     public int passiveItemIndex;
 
+    [Header("UI")]
+    public Image healthBar;
+
 
     void Awake() 
     {
@@ -112,6 +116,8 @@ public class PlayerState : MonoBehaviour
         //初始化
         experienceCap = levelRanges[0].experienceCapIncrease;
         CharacterSelect.instance.DestroySingleton();
+
+        UpdateHealthBar();
     }
 
     // Update is called once per frame
@@ -147,6 +153,8 @@ public class PlayerState : MonoBehaviour
                 }
             }
             experienceCap += experienceCapIncrease;
+
+            GameManager.instance.StartLevelUp();
         }
     }
 
@@ -168,6 +176,14 @@ public class PlayerState : MonoBehaviour
                 Die();
             }
 
+        UpdateHealthBar();
+
+    }
+
+    void UpdateHealthBar()
+    {
+        //更新生命值
+        healthBar.fillAmount = currentHealth / playerData._MaxHealth;
     }
 
     // 死亡行为
@@ -175,6 +191,13 @@ public class PlayerState : MonoBehaviour
     {
         // TODO: 角色死亡后的处理
         Debug.Log("Player is dead");
+
+        if (!GameManager.instance.isGameOver)
+        {
+            //GameManager.instance.AssignLevelReachedUI(level);
+            //GameManager.instance.AssignChosenWeaponsAndPassiveItemsUI(inventory.weaponUISlots,inventory.passiveItemUISlots);
+            GameManager.instance.GameOver();
+        }
     }
 
     //自然恢复生命值

@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     {
         Gameplay,
         Paused,
-        GameOver
+        GameOver,
+        LevelUp
     } 
 
     //µ±Ç°ÓÎÏ·×´Ì¬
@@ -20,6 +21,19 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject pasueScreen;
+    public GameObject levelUpScreen;
+
+
+    [Header("Stopwatch")]
+    public float timeLimit;
+    float stopwatchTime;
+
+
+    public bool isGameOver = false;
+
+    public bool choosingUpgrade;
+
+    public GameObject playerObj;
 
     void Awake()
     {
@@ -50,6 +64,15 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
+                break;
+
+            case GameState.LevelUp:
+                if(!choosingUpgrade)
+                {
+                    choosingUpgrade = true;
+                    Time.timeScale = 0f;
+                    levelUpScreen.SetActive(true);
+                }
                 break;
 
             default:
@@ -106,6 +129,44 @@ public class GameManager : MonoBehaviour
     void DisableScreen()
     {
         pasueScreen.SetActive(false);
+        levelUpScreen.SetActive(false);
     }
 
+
+    public void StartLevelUp()
+    {
+        ChangeState(GameState.LevelUp);
+        playerObj.SendMessage("RemoveAndApplyupgrades");
+    }
+
+    public void EndLevelUp()
+    {
+        choosingUpgrade = false;
+        Time.timeScale = 1f;
+        levelUpScreen.SetActive(false);
+        ChangeState(GameState.Gameplay);
+    }
+
+    void UpdateStopwatch()
+    {
+        stopwatchTime += Time.deltaTime;
+        UpdateStopWatchDisplay();
+
+        if (stopwatchTime >= timeLimit)
+        {
+            //GameOver();
+            playerObj.SendMessage("Die");
+        }
+
+    }
+
+    void UpdateStopWatchDisplay()
+    {
+
+    }
+
+    public void GameOver()
+    {
+
+    }
 }

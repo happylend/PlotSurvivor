@@ -5,7 +5,7 @@ using static WeaponData;
 
 public class WeaponController : MonoBehaviour
 {
-    WeaponData weaponData;
+    public WeaponData weaponData;
     //public GameObject weaponModel;
 
 

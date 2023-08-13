@@ -47,6 +47,30 @@ public class WeaponData : ScriptableObject
     [SerializeField]
     public List<WeaponEXData> WeaponEX;
 
+    [Header("ÎäÆ÷µÈ¼¶")]
+    [SerializeField]
+    int level;
+    public int _level { get => level; private set => level = value; }
+
+    [Header("ÎäÆ÷Éý¼¶¶ÔÏó")]
+    [SerializeField]
+    GameObject nextLevelPrefab;
+    public GameObject _nextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
+
+    [Header("ÎäÆ÷Ãû³Æ")]
+    [SerializeField]
+    new string name;
+    public string _Name { get => name; private set => name = value; }
+
+    [Header("ÎäÆ÷ÃèÊö")]
+    [SerializeField]
+    string Description;
+    public string _Description { get => Description; private set => Description = value; }
+
+    [Header("ÎäÆ÷Í¼±ê")]
+    [SerializeField]
+    Sprite Icon;
+    public Sprite _Icon { get => Icon; private set => Icon = value; }
 
     [System.Serializable]
     public class WeaponLevel
